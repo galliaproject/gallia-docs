@@ -3,20 +3,20 @@
 
 ===========================================================================
 ## remarks:
-rk210127114128 - low tech for now (consider this as more of a quick brain dump);
+- rk210127114128 - low tech for now (consider this as more of a quick brain dump);
 	mostly to capture essential features that are missing or are currently subpar;
 	will formalize process by increment (will turn into bona fide tasks that can be contributed to by others readily)
 - task:
-	rk210127114129 - "- pN -" indicates priority (5: low, to 1: high); if none specified, it's TBD
-		rk210204193138 - more exclamation marks (!) -> more critical/difficult
-		rk210204193139 - more stars (*) -> more work		
-	rk210204093549 - it's generally implied that if not much detail is provided in the task, the ID should be searched for in the code
-	rk210127194859 - not all tasks and ported to their corresponding place in the code yet, and vice versa
-	rk210127114130 - there are a lot more "small" tasks in my notes: I'm in the process of porting them (about halfway done)
-		rk210202163918 - this is in itself a big endeavor (thousands of lines of notes)
-		rk210127114131 - sometimes the line between creating a task vs addressing the issue is a fine one...
-rk210127114333 - for better or worse I try and ID tasks/remarks/assumptions/... as much as possible in order to make it possible to reference them elsewhere, as well as search for them; and yes, i do wake up at night screaming random timestamps.
-rk210127114621 - most remarks in here will move over to the docs eventually (see t210127114652); some tags such as [mytag] are meant for me to find the relevant tag/keywords within my notes
+	- rk210127114129 - "- pN -" indicates priority (5: low, to 1: high); if none specified, it's TBD
+		- rk210204193138 - more exclamation marks (!) -> more critical/difficult
+		- rk210204193139 - more stars (*) -> more work		
+	- rk210204093549 - it's generally implied that if not much detail is provided in the task, the ID should be searched for in the code
+	- rk210127194859 - not all tasks and ported to their corresponding place in the code yet, and vice versa
+	- rk210127114130 - there are a lot more "small" tasks in my notes: I'm in the process of porting them (about halfway done)
+		- rk210202163918 - this is in itself a big endeavor (thousands of lines of notes)
+		- rk210127114131 - sometimes the line between creating a task vs addressing the issue is a fine one...
+- rk210127114333 - for better or worse I try and ID tasks/remarks/assumptions/... as much as possible in order to make it possible to reference them elsewhere, as well as search for them; and yes, i do wake up at night screaming random timestamps.
+- rk210127114621 - most remarks in here will move over to the docs eventually (see t210127114652); some tags such as [mytag] are meant for me to find the relevant tag/keywords within my notes
 
 ===========================================================================
 - admin: t210127114844
