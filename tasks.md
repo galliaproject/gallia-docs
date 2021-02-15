@@ -639,9 +639,13 @@
 		remarks:
 		- semver: will be very liberal with my changes to PATCH version at least for the 0.0.x series, will then formalize process by increment
 			
-	- <a name="t210121101237"></a>t210121101237 - p3 - add support for 2.13
-	- t210121165146 - p5 - add support cross-building (2.12 onward)
-	- t210121101238 - p3 - prototype for scala 3.x					
+	- <a name="t210121101237">t210121101237</a> - p1 - 2.13 support
+		- ~~make it compile~~
+		- address resulting new warnings
+	- <a name="t210121165146">t210121165146</a> - p2 - cross-building support (2.12 onward)
+		- ~~hacky support (see 210214150322)~~
+		- proper support: will need scalafix?
+	- <a name="t210121101238">t210121101238</a> - p3 - prototype for scala 3.x
 	- t210121165120 - p5 - shade guava [spark]
 	- t210121165147 - p5 - add support for test coverage
 	- t210121165219 - p5 - address warnings / add more scalac options
