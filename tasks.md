@@ -642,9 +642,10 @@
 	- <a name="t210121101237">t210121101237</a> - p1 - 2.13 support
 		- ~~make it compile~~
 		- address resulting new warnings
-	- <a name="t210121165146">t210121165146</a> - p2 - cross-building support (2.12 onward)
+		- replace all instances of aptus' `thn` with new `pipe` mechanism (and `sideEffect` with `tap`)
+	- ~~<a name="t210121165146">t210121165146</a> - p2 - cross-building support (2.12 onward)~~
 		- ~~hacky support (see 210214150322)~~
-		- proper support: will need scalafix?
+		- ~~proper support~~
 	- <a name="t210121101238">t210121101238</a> - p3 - prototype for scala 3.x
 	- t210121165120 - p5 - shade guava [spark]
 	- t210121165147 - p5 - add support for test coverage
