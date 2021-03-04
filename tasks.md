@@ -19,7 +19,7 @@
 - <a name="rk210127114621"></a>rk210127114621 - most remarks in here will move over to the docs eventually (see <a name="t210127114652"></a>t210127114652); some tags such as [mytag] are meant for me to find the relevant tag/keywords within my notes
 
 ===========================================================================
-- admin: <a name="t210127114844"></a>t210127114844
+- admin: <a name="admin"></a><a name="t210127114844"></a>t210127114844
 	- <a name="t210109164841"></a>t210109164841 - determine funding mechanism going forward
 	- <a name="t210109164840"></a>t210109164840 - determine adequate license
 	- <a name="t210127114653"></a>t210127114653 - consider arxiv publication?
@@ -28,7 +28,7 @@
 	- <a name="t210131152002"></a>t210131152002 - p1 - go through all remaining ID-less "FIXME"s and either assign p1/p2 task or change to TODO
 
 ===========================================================================
-- internals: <a name="t210205113857"></a>t210205113857
+- internals: <a name="internals"></a><a name="t210205113857"></a>t210205113857
 	- <a name="t201223100652"></a>t201223100652 - p4 - setup proper DI (eg for spark/mongodb); macwire maybe?
 	- <a name="t210114111539"></a>t210114111539 - p2 - @Narrow: identitify wrapped Us (z.map()) vs full on Zs, so can pinpoint problematic object for instance + provide index/_id; runtime errors can be hard to figure out otherwise
 	- <a name="t210116153713"></a>t210116153713 - p5 - homogenize ClassTag vs WeakTypeTag throughout (always use latter when possible? ie outside of spark)
@@ -45,7 +45,7 @@
 		- <a name="t210121170823"></a>t210121170823 - p4 - use private whenever possible
 
 ===========================================================================
-- DAG: <a name="t210205113853"></a>t210205113853
+- DAG: <a name="DAG"></a><a name="t210205113853"></a>t210205113853
 	- <a name="t210116120349"></a>t210116120349 - p5 - investigate existing graph libs rather
 	- <a name="t210128152949"></a>t210128152949 - p2 - add missing cycle detection
 	- <a name="t210106101457"></a>t210106101457 - p4 - meta-only run - may be great for the likes of <a name="t210115115736"></a>t210115115736 (generate intermediate [dataclass])
@@ -58,7 +58,7 @@
 	 	- <a name="t210114125607"></a>t210114125607 - p5 - improve "InputData" afterthoughts (meant to help with debugging)
 
 ===========================================================================
-- types: <a name="t210121124808"></a>t210121124808
+- types: <a name="types"></a><a name="t210121124808"></a>t210121124808
 	- <a name="t210115151942"></a>t210115151942 - p1 - @TypeMatching/@PartialTypeMatching - to help find where types are being pattern-matched easily
 
 	- <a name="t210110094829"></a>t210110094829 - p1 - opaque nesting: accept Obj as value, albeit the standalone version (see <a name="t210104164037"></a>t210104164037); do not limit types to [basictype]; could also help where need to provide newKeys (eg <a name="t210202172304"></a>t210202172304)
@@ -87,29 +87,28 @@
 
 	---------------------------------------------------------------------------
 	- enums: <a name="t210205113844"></a>t210205113844
-			remarks:
-			- a boolean can either be seen as 0/1 integers, or as a special kind of enum
-			
-		- <a name="t210201095414"></a>t210201095414 - p2 - missing enum accessor support, eg _.enum[MyEnum]('f)
+		- _remarks_:
+			- a boolean can either be seen as 0/1 integers, or as a special kind of enum			
+		- <a name="t210201095414"></a>t210201095414 - p2 - missing enum accessor support, eg _.enum\[MyEnum\]('f)
 		- <a name="t210114093525"></a>t210114093525 - p4 - capture enum values (will need to adapt serialization)
 		- <a name="t210110095228"></a>t210110095228 - p5 - also support scala enum (as opposed to enumeratum)
 		- <a name="t210116114654"></a>t210116114654 - p5 - double check ModifyObj behavior OK
 		
 	---------------------------------------------------------------------------		
 	- Whatever: <a name="t210205113848"></a>t210205113848
-			remarks:
+		- _remarks_:
 			- affects: transform, generate, fuse/fission, filter/findBy, pivot, removeIf;
 			- keep to a minimum...
 		- <a name="t210111135617"></a>t210111135617 - p5 - add more common Seq/String/number operations for Whatever?			
 		- <a name="t210202160537"></a>t210202160537 - p2 - missing combinations of number types for plus/times
 		- <a name="t210202160709"></a>t210202160709 - p3 - more formatting value types
-		- <a name="t210204170956"></a>t210204170956 - create workaround for: def + (that: Int): TypedWhatever[Int] (can be Double); relates to <a name="t201017102332"></a>t201017102332 (@NumberAbstraction)
+		- <a name="t210204170956"></a>t210204170956 - create workaround for: def + (that: Int): TypedWhatever\[Int\] (can be Double); relates to <a name="t201017102332"></a>t201017102332 (@NumberAbstraction)
 		- <a name="t210113124437"></a>t210113124437 - need to adapt mechanism to obtain 0 when missing; also "size" ambiguity (container vs length of seq/string)
 		- <a name="t210204170740"></a>t210204170740 - occurrences of "whatever0": need to determine if/when must use ContainedWhatever or if isWhatever okay
-		- <a name="t210201164613"></a>t210201164613 - p2 - [bug] - fix .transform(_.typed[Seq[_]]('f)).using(_.size), or provide .anys (if only need eg .size, or .slice(1, 3))
+		- <a name="t210201164613"></a>t210201164613 - p2 - [bug] - fix .transform(_.typed\[Seq\[_\]\]('f)).using(_.size), or provide .anys (if only need eg .size, or .slice(1, 3))
 
 ===========================================================================
-- stats: <a name="t210128151632"></a>t210128151632
+- stats: <a name="stats"></a><a name="t210128151632"></a>t210128151632
 	- <a name="t210115140107"></a>t210115140107 - p5 - use dedicated lib? or just wrap commons'?
 	- <a name="t210118083814"></a>t210118083814 - p2 - new version (ReducingStats)
 		- <a name="t201207170908"></a>t201207170908 - p5 - stats [dataclass] mapping to/from; lite, full;
@@ -124,7 +123,7 @@
 				- <a name="t201207134039"></a>t201207134039 - p5 - rounding/floor/ceiling for int values (eg for mean, median, ...)
 
 ===========================================================================
-- data: <a name="t210205113903"></a>t210205113903
+- data: <a name="data"></a><a name="t210205113903"></a>t210205113903
 	- <a name="t210104164037"></a>t210104164037 - p5 - standalone data-only version with most operations (relates to <a name="t210104164036"></a>t210104164036)
 		- <a name="t210104164038"></a>t210104164038 - p5 - standalone json (gson) version for pre/post-processing (relates to input pre-processing: <a name="t210202112439"></a>t210202112439)
 	- <a name="t210107094213"></a>t210107094213 - p5 - ensure if nested multiple elements then use List, not any Seq (especially not Stream)
@@ -147,7 +146,7 @@
 		- <a name="t210203124840"></a>t210203124840 - p1 - check value type is part of [basictype] (also see <a name="t210203124717"></a>t210203124717)
 
 ===========================================================================
-- target selection: <a name="t210205113906"></a>t210205113906
+- target selection: <a name="target-selection"></a><a name="t210205113906"></a>t210205113906
 	- <a name="t210107203932"></a>t210107203932 - p5 - cleanup the big mess
 	- untyped:
 		:
@@ -162,7 +161,7 @@
 	- <a name="t210110094730"></a>t210110094730 - p5 - offer more for-each field operation shorthands (eg .convert('f, 'g, 'h).toInt) when practical; (otherwise must rely more on forX mechanisms, which is more coarse)
 
 ===========================================================================
-- validation: [vldt] <a name="t210205113909"></a>t210205113909
+- validation: [vldt] <a name="validation"></a><a name="vldt"></a><a name="t210205113909"></a>t210205113909
 	- <a name="t201210104557"></a>t201210104557 - p2 - all missing actions validations (lots)
 	
 	---------------------------------------------------------------------------
@@ -223,10 +222,9 @@
 		- <a name="t210128153122"></a>t210128153122 - p2 - prevent cycles in nested [dataclass] validations + set a max nesting
 
 ===========================================================================
-- actions: <a name="t210204152754"></a>t210204152754
-		remarks:
-		<a name="rk210204162927"></a>rk210204162927 - [fluency] conveying intent matters, e.g. add (must not already exist) vs replace (must already exist)
-		
+- actions: <a name="actions"></a><a name="t210204152754"></a>t210204152754
+	-remarks:
+		- <a name="rk210204162927"></a>rk210204162927 - [fluency] conveying intent matters, e.g. add (must not already exist) vs replace (must already exist)		
 	- cross-cutting:		
 		- <a name="t210110104437"></a>t210110104437 - p1 - [hack][bug] - all the renFX/fromFX/fromsFX/explicitFX, eg: nest, unnest, ... -> where renaming is supposed to be possible
 		- common:
@@ -270,7 +268,7 @@
 
 			- convert:
 				- <a name="t210128152726"></a>t210128152726 - p4 - [feature] - add missing convert('foo).toEnum[MyEnum]
-				- <a name="t210128162159"></a>t210128162159 - p4 - [feature] - convert from JSON string, eg .convert('foo).fromJsonString[MyDataClass]("""{"foo":1, "bar":"baz"}""") + convert('foo).fromJsonToObj (see <a name="t210110094829"></a>t210110094829 opaqueness)
+				- <a name="t210128162159"></a>t210128162159 - p4 - [feature] - convert from JSON string, eg .convert('foo).fromJsonString\[MyDataClass\]("""{"foo":1, "bar":"baz"}""") + convert('foo).fromJsonToObj (see <a name="t210110094829"></a>t210110094829 opaqueness)
 
 			- set default value:
 				- <a name="t210129093607"></a>t210129093607 - p4 - [feature] - offer shortcut setDefaults('foo -> 1, 'bar -> "baz", ...)
@@ -302,7 +300,7 @@
 			
 		- untuplify:
 			- new keys:
-				- <a name="t210117192142"></a>t210117192142 - p5 - [feature] - add enum counterpart to provide newKeys, eg def asNewKeys[MyEnum] (also see <a name="t210117192141"></a>t210117192141 for pivoting)
+				- <a name="t210117192142"></a>t210117192142 - p5 - [feature] - add enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see <a name="t210117192141"></a>t210117192141 for pivoting)
 			
 		- nesting-related:
 			- <a name="t210109144926"></a>t210109144926 - p5 - [feature] - generalize nest/unnest as "move"
@@ -350,7 +348,7 @@
 			- <a name="t201021120751"></a>t201021120751 - p2 - [feature] - provide Wathever-based SQL-like shorthand for IN: .filter('color).in("blue", "white", "red")
 	
 		- flatten by:				
-			- <a name="t210131101358"></a>t210131101358 - p3 - simplify X in: [{"values":"g1;g2;g3", "bar": true}, {"values":"g4", "bar": false}] -> X -> [{"values":"g1", "bar": true}, {"values":"g2", "bar": true}, {"values":"g3", "bar": true}]; X=.transformString('values ~> 'value).using { _.splitBy(";").as.noneIf(_.size == 1) }.flattenBy('value).filterBy('value).isMissing	    	
+			- <a name="t210131101358"></a>t210131101358 - p3 - simplify X in: `[{"values":"g1;g2;g3", "bar": true}, {"values":"g4", "bar": false}] -> X -> [{"values":"g1", "bar": true}, {"values":"g2", "bar": true}, {"values":"g3", "bar": true}]`; X=.transformString('values ~> 'value).using { _.splitBy(";").as.noneIf(_.size == 1) }.flattenBy('value).filterBy('value).isMissing	    	
 			- <a name="t210131102306"></a>t210131102306 - cascade if multiple?
 			- <a name="t210131102354"></a>t210131102354 - flattenAndUnnestBy{Group,Left,...} - common enough?
 
@@ -367,27 +365,24 @@
 							
 		- pivoting:
 			- new keys:
-				- <a name="t210117192142"></a>t210117192142 - p4 - enum counterpart to provide newKeys, eg def asNewKeys[MyEnum] (also see <a name="t210117192142"></a>t210117192142 for untuplify)
+				- <a name="t210117192142"></a>t210117192142 - p4 - enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see <a name="t210117192142"></a>t210117192142 for untuplify)
 				- <a name="t210202172304"></a>t210202172304 - p3 - unspecified: using opaque object as data (relates to <a name="t210110094829"></a>t210110094829) - try
 			- <a name="t210120171258"></a>t210120171258 - p2 - [feature] - add support for unpivoting
 			- <a name="t210117192221"></a>t210117192221 - p3 - configurable key separator	
 
 ===========================================================================
-- schema: <a name="t210204152731"></a>t210204152731
-		remarks:
-		<a name="rk210127114008"></a>rk210127114008 - a schema is really just data about data (hence "meta"-data);
-		<a name="rk210127114009"></a>rk210127114009 - specifically a schema can be seen as coarse statistics about the data
-
-	- io: see <a name="t210128103821"></a>t210128103821
-	
+- schema: <a name="schema"></a><a name="t210204152731"></a>t210204152731
+	- _remarks_:
+		- <a name="rk210127114008"></a>rk210127114008 - a schema is really just data about data (hence "meta"-data);
+		- <a name="rk210127114009"></a>rk210127114009 - specifically a schema can be seen as coarse statistics about the data
+	- io: see <a name="t210128103821"></a>t210128103821	
 	- <a name="t210124100957"></a>t210124100957 - p5 - a "confirm" schema action, e.g. [...].confirmSchema[MyDataClass] or .confirmSchema('foo.string, 'bar.int) or .confirmSchema("my/file")		
 	- <a name="t210126173150"></a>t210126173150 - p5** - ambitious "[backtracking]" mode [research], whereby no input schema is provided and instead each step ensure consistency with one another only (e.g. don't add a field that was already added in an earlier step); relates to <a name="t210118133408"></a>t210118133408 [hettype]
 	- <a name="t210128165110"></a>t210128165110 - p5** - going to/from schema formats (relate to io's <a name="t210128103821"></a>t210128103821 - generalize schema i/o for any schema-like format)
 		JSON schema (see <a name="t210128163913"></a>t210128163913), avro (see <a name="t210128163914"></a>t210128163914), ES mappings (see <a name="t201028094710"></a>t201028094710), ...
 
 ===========================================================================
-- io: <a name="t210204152732"></a>t210204152732
-
+- io: <a name="io"></a><a name="t210204152732"></a>t210204152732
 	- misc:
 		- <a name="t210121160956"></a>t210121160956 - p3 - [feature] - checkpointing mechanism (relates to <a name="t201108093951"></a>t201108093951 for z.writeJsons)
 		- <a name="t210121171126"></a>t210121171126 - p5 - provide Windows support? try a run (I suspect the likes of '\r' will trip it in local mode at least); support .ini files and so on; are there named pipes equivalent? GNU-sort?
@@ -457,12 +452,12 @@
 		- in memory: <a name="t210205113946"></a>t210205113946
 			- <a name="t210128163912"></a>t210128163912 - Spark Row
 			- <a name="t210117105638"></a>t210117105638 - [dataclass] - (see code 210117105638@w); also see <a name="t210128163910"></a>t210128163910 for source code
-				- in:
+				- in:```
 					(x:     MyCc ).read  ()
-					(x: Seq[MyCc]).stream()
-				- out: readCC/populateDC/writeCC + z
+					(x: Seq[MyCc]).stream()```
+				- out: readCC/populateDC/writeCC + z; ```
 					val x: MyCC           = u.populate[MyCc]
-					val x: Iterator[MyCC] = z.populate[MyCc] // or as Streamer
+					val x: Iterator[MyCC] = z.populate[MyCc] // or as Streamer```
 
 		---------------------------------------------------------------------------
 		- schema-only: see <a name="t210204142528"></a>t210204142528
@@ -509,7 +504,7 @@
 			- more: snappy, lz4, ZSTD
 
 	===========================================================================
-	- in: <a name="t210205114007"></a>t210205114007
+	- in: <a name="in"></a><a name="t210205114007"></a>t210205114007
 		- validation: vldt: see <a name="t210115153348"></a>t210115153348
 
 		- misc: <a name="t210205114028"></a>t210205114028
@@ -548,7 +543,7 @@
 			- <a name="t210128160241"></a>t210128160241 - p2 - try with FileMaker (often used by labs along with excel) - jdbc:filemaker://localhost:2399/mydb
 
 	===========================================================================
-	- out: <a name="t210205114012"></a>t210205114012
+	- out: <a name="out"></a><a name="t210205114012"></a>t210205114012
 		- misc:
 			- <a name="t210122140324"></a>t210122140324 - p1! - [bug] - ensure sole or last leaf before running
 				- closely related to <a name="t210121160956"></a>t210121160956-checkpointing (and <a name="t201108093951"></a>t201108093951-returning Unit or head)
@@ -566,9 +561,9 @@
 			- <a name="t210128164040"></a>t210128164040 - corresponding write [fluency] - eg schema(_.exclude), schema(_.json), schema(_.fileName("foo")), .schema(_.compression)
 
 ===========================================================================
-- performance: [optim]: <a name="t210121095401"></a>t210121095401
+- performance: [optim]: <a name="performance"></a><a name="optim"></a><a name="t210121095401"></a>t210121095401
 	- <a name="t210121170923"></a>t210121170923 - p5 - need some benchmarking numbers before optimizing, maybe use TCP-DS? (check license)
-	- <a name="t210104164036"></a>t210104164036 - p5 - UData as Vector[Seq[Any]] (relates to <a name="t210104164037"></a>t210104164037)
+	- <a name="t210104164036"></a>t210104164036 - p5 - UData as Vector\[Seq\[Any\]\] (relates to <a name="t210104164037"></a>t210104164037)
 	- <a name="t210110100144"></a>t210110100144 - p5 - macros for [dataclass] to/from Obj + field names enum
 	- <a name="t210115095741"></a>t210115095741 - p2 - von neumann bottleneck: also give easy access to .par where applicable; for iterator: see <a name="t210115095742"></a>t210115095742
 	- <a name="t210115095838"></a>t210115095838 - p5 - more reliance on meta to help with data, so as to minimize pattern matchings at runtime (eg see <a name="t201019110649"></a>t201019110649 for reorderKeysRecursively, obj to gson, formatting value in table (array or not))
@@ -598,10 +593,9 @@
 		- <a name="t210122095106"></a>t210122095106 - p5 - confirm no performance impact: .filter(_._2._1.nonEmpty).filter(_._2._2.nonEmpty) vs combined
 
 ===========================================================================
-- spark: <a name="t210121164812"></a>t210121164812
-		remarks:
+- spark: <a name="spark"></a><a name="t210121164812"></a>t210121164812
+	- _remarks_:
 		- not a spark expert so probably a lot more can be done to better take advantage of it
-
 	- indirection:
 		- spilling: see <a name="t201131143901"></a>t201131143901
 		- optim: see <a name="t210204112444"></a>t210204112444
@@ -635,10 +629,9 @@
 		- <a name="t201101121424"></a>t201101121424 - confusing: `preservesPartitioning` indicates whether the input function preserves the partitioner, which should be `false` unless this is a pair RDD and the input function doesn't modify the keys.
 
 ===========================================================================
-- build: <a name="t210121165130"></a>t210121165130
-		remarks:
-		- semver: will be very liberal with my changes to PATCH version at least for the 0.0.x series, will then formalize process by increment
-			
+- build: <a name="build"></a><a name="t210121165130"></a>t210121165130
+	- _remarks_:
+		- semver: will be very liberal with my changes to PATCH version at least for the 0.0.x series, will then formalize process by increment			
 	- <a name="t210121101237"></a>t210121101237 - p1 - 2.13 support
 		- ~~make it compile~~
 		- address resulting new warnings
@@ -662,11 +655,11 @@
 	- <a name="t210125110147"></a>t210125110147 - p3 - investigate sbt alternatives
 
 ===========================================================================
-- testing: test: <a name="t210205114038"></a>t210205114038
+- testing: test: <a name="testing"></a><a name="test"></a><a name="t210205114038"></a>t210205114038
 	- <a name="t210114171154"></a>t210114171154 - p5** - port "quick tests" to actual tests
 
 ===========================================================================
-- scala: <a name="t210121165423"></a>t210121165423
+- scala: <a name="scala"></a><a name="t210121165423"></a>t210121165423
 	- <a name="t201213095810"></a>t201213095810 - p5 - any way to what's in Unit_ to Predef if possible? implicit class doesn't seem to work
 	- <a name="t210115142355"></a>t210115142355 - p5 - investigate why += not appending for immutable.ListMap (see code)
 	- <a name="t201123125604"></a>t201123125604 - p5 - why implicit not picked up (HeadZPair)
@@ -680,8 +673,8 @@
 	- <a name="t210125111338"></a>t210125111338 - investigate union types (coming in scala 3?)
 
 ===========================================================================
-- aptus: <a name="t210121165939"></a>t210121165939
-		remarks:
+- aptus: <a name="aptus"></a><a name="t210121165939"></a>t210121165939
+	- _remarks_:
 		- meant to be really to-the-point, easy to call utility methods
 		- if anything more powerful is needed then must drop to full-on java/scala/guava/commons way
 		- it can also be seen as a starting point, for someone to see what is used under the hood and expand from it if needed; eg: val content: String = "/my/file.txt".readFileContent()
@@ -693,7 +686,7 @@
 	- <a name="t210125110827"></a>t210125110827 - aliases: consider AnyVal-based wrappers rather than mere aliases? overkill?
 
 ===========================================================================
-- docs: <a name="t210127114652"></a>t210127114652
+- docs: <a name="docs"></a><a name="t210127114652"></a>t210127114652
 	- <a name="t210127125443"></a>t210127125443 - bullet points version first
 	- <a name="t210127125444"></a>t210127125444 - create minimal scala learning resource (to help at least understand _client_ code)?
 	- <a name="t210127163237"></a>t210127163237 - describe assumptions (may in Obj.scala, eg a201104150252) and workarounds
@@ -705,12 +698,11 @@
 				- 210127125354 - vertical alignment: whatever can be done to lower cognitive burden
 				- ...
 			- <a name="t210127125056"></a>t210127125056 - describe/provide IDE templates, such as '---'/"===" banners, "formatDefault", "enum", "caseopt", ...
-
-	- terminology: <a name="t210124100007"></a>t210124100007
+	- terminology: <a name="terminology"></a><a name="t210124100007"></a>t210124100007
 			remarks:
 			- sometimes making up a temporary term is better than leaving ambiguity and polysemy
 			- keep symbolism to a minimum, when really more convenient
-		- <a name="t210127123739"></a>t210127123739 - describe symbolism (+ rationale), e.g. "|>", "~>", stringx (ignore container), string_ (because `string?` is ugly), .typed[String]('foo), ...
+		- <a name="t210127123739"></a>t210127123739 - describe symbolism (+ rationale), e.g. "|>", "~>", stringx (ignore container), string_ (because `string?` is ugly), .typed\[String\]('foo), ...
 		- <a name="t210127123841"></a>t210127123841 - describe abbrevations and acronyms, e.g. KVE (Key-Value Entry), NDT (NodeDataType), ASG (Afferent Sub Graph), ...
 		- <a name="t210130091656"></a>t210130091656 - describe common (hosting language) reserved keyword workarounds: dis (this), thn/zen (then), wit (with)
 		- <a name="t210130091657"></a>t210130091657 - describe gallia reserved keyword: _id, _group, _count, _tmp, ...; basically use them for unintended purposes at your own risk
@@ -722,7 +714,7 @@
 			- <a name="t210205065320"></a>t210205065320 - p2 - rename to .grab to .access or .orphan? .squash to .combine?
 
 ===========================================================================
-- research:	<a name="t210205114050"></a>t210205114050
+- research:	<a name="research"></a><a name="t210205114050"></a>t210205114050
 	- <a name="t210202085958"></a>t210202085958 - p2 - create a special action for simplest transform 1 to 1 that ignores requiredness; like "morph" for "transmute" (arbitrarily)	
 	- <a name="t210128160642"></a>t210128160642 - p4 - expect import gallia.local._ to unlock e.g. take/drop; pertains to @Distributivity (<a name="t210123183101"></a>t210123183101); contrats with import gallia.spark._
 	- <a name="t201108093951"></a>t201108093951 - p3 - should z.writeJsons return unit or a z (may need to reread input) - has a big impact on [spark] (see checkpointing: <a name="t210121160956"></a>t210121160956)
@@ -740,12 +732,12 @@
 		
 	- <a name="t210118133408"></a>t210118133408 - p2 - [hettype] - type heterogeneity handling
 		- <a name="t210202115959"></a>t210202115959 - full-on support type heterogeneity [hettype]? big endeavor but may be worth the effort
-		- <a name="t210202115958"></a>t210202115958 - p2 - type heterogeneity [hettype] workaround (relatest to <a name="t210104164038"></a>t210104164038 for json manip) - especially cases like:
+		- <a name="t210202115958"></a>t210202115958 - p2 - type heterogeneity [hettype] workaround (relatest to <a name="t210104164038"></a>t210104164038 for json manip) - especially cases like:```
 					[{"foo": 1}            , {"foo": "10+"}]            -->  [{"foo":"1"},            {"foo": "10+"}]
 					[{"foo": {"bar": "hi"}}, {"foo": "sup"}]            -->  [{"foo": {"bar": "hi"}}, {"foo": {"bar": "sup"}}}]
-					[{"foo": "bar"}        , {"foo": ["bar1", "bar2"]}] -->  [{"foo":["bar"]},        {"foo": ["bar1", "bar2"]}
-				or maybe just ability to rename fields like: 
-					[{"foo": 1}, {"foo": "10+"}] --> [{"foo_int":1, "foo_string": null}, {"foo_int": null, "foo_string": "10+"}]
+					[{"foo": "bar"}        , {"foo": ["bar1", "bar2"]}] -->  [{"foo":["bar"]},        {"foo": ["bar1", "bar2"]}```
+				or maybe just ability to rename fields like:```
+					[{"foo": 1}, {"foo": "10+"}] --> [{"foo_int":1, "foo_string": null}, {"foo_int": null, "foo_string": "10+"}]```
 
 	- terminology: <a name="t210124100008"></a>t210124100008
 		- <a name="t210124100008"></a>t210124100008 - p2 - change read()/stream() to readOne()/read()?
@@ -759,13 +751,13 @@
   			- <a name="t210202090526"></a>t210202090526 - p2 - rename and homogenize the likes of "Duo", "HT", "HasType"
 
 ===========================================================================
-- more: <a name="t210124100537"></a>t210124100537
+- more: <a name="more"></a><a name="t210124100537"></a>t210124100537
 	
-	- spilling: <a name="t210204111309"></a>t210204111309 - see PoC
+	- spilling: <a name="spilling"></a><a name="t210204111309"></a>t210204111309 - see PoC
 		- <a name="t201131143901"></a>t201131143901	- spark: make sure that we preserve order if data is small
 	
 	---------------------------------------------------------------------------
-	- integration: <a name="t210124100540"></a>t210124100540 - investigate dependencies first and foremost
+	- integration: <a name="integration"></a><a name="t210124100540"></a>t210124100540 - investigate dependencies first and foremost
 		- indirection:
 			- graph: see <a name="t210116120349"></a>t210116120349 (for plan DAG)
 			- RDBMS: see <a name="t210114145431"></a>t210114145431
@@ -776,17 +768,17 @@
 		- <a name="t210204095520"></a>t210204095520 - low priority - visualization: look into vegas?
 
 	---------------------------------------------------------------------------
-	- scripting: <a name="t210124100126"></a>t210124100126
+	- scripting: <a name="scripting"></a><a name="t210124100126"></a>t210124100126
 		- make it easy to use gallia from script (eg bash); for improved performance, could look into nailgun or custom socket-based alternative?
 
 	---------------------------------------------------------------------------
 	- scientific computing: computational science:
-			remarks:
-			<a name="rk210127135755"></a>rk210127135755 - while not the primary goal, would be great to provide more					
+		- _remarks_:
+			- <a name="rk210127135755"></a>rk210127135755 - while not the primary goal, would be great to provide more					
 
 		---------------------------------------------------------------------------
 		- external tools: <a name="t210124092211"></a>t210124092211
-				remarks:
+			- _remarks_:
 				- pertains to the ability to wrap/call external tools (with performance hit), especially R/python/js/...; see POCs; for python, look at jep
 				- great to showcase what features are useful and could benefit from being replicated in gallia
 			- visualization: plotting: <a name="t210124092257"></a>t210124092257
