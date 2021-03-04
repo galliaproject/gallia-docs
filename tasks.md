@@ -593,6 +593,14 @@
 		- <a name="t210122095106"></a>t210122095106 - p5 - confirm no performance impact: .filter(_._2._1.nonEmpty).filter(_._2._2.nonEmpty) vs combined
 
 ===========================================================================
+- spilling: <a name="spilling"></a> <a name="poor-man-scaling"></a><a name="t210204111309"></a>t210204111309
+	- _remarks_:
+		- <a name="rk210304115313"></a>rk210304115313 - this is basically a hack
+	- <a name="t210304094613"></a>t210304094613 - p3 - add missing GnuSortHack, wrapping eg: sort -t$'\t' -k1n,2,3r
+	- <a name="t210304095420"></a>t210304095420 - p3 - try windows: looks like GNU sort can be installed for windows as well: same options?
+	- <a name="t210304095755"></a>t210304095755 - p3 - simplying locale setting
+
+===========================================================================
 - spark: <a name="spark"></a><a name="t210121164812"></a>t210121164812
 	- _remarks_:
 		- not a spark expert so probably a lot more can be done to better take advantage of it
@@ -753,10 +761,6 @@
 ===========================================================================
 - more: <a name="more"></a><a name="t210124100537"></a>t210124100537
 	
-	- spilling: <a name="spilling"></a><a name="t210204111309"></a>t210204111309 - see PoC
-		- <a name="t201131143901"></a>t201131143901	- spark: make sure that we preserve order if data is small
-	
-	---------------------------------------------------------------------------
 	- integration: <a name="integration"></a><a name="t210124100540"></a>t210124100540 - investigate dependencies first and foremost
 		- indirection:
 			- graph: see [t210116120349](#t210116120349) (for plan DAG)
