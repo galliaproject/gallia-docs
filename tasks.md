@@ -210,8 +210,9 @@
 		
 	---------------------------------------------------------------------------
 	- actions: <a name="t210205113925"></a>t210205113925		
-		- unarray:
-			- <a name="t210115175242"></a>t210115175242 - p5 - unarray entries: add missing runtime validation of newKeys
+		- pivot:
+			- <a name="t210115175242"></a>t210115175242 - p2 - add missing runtime validation of newKeys
+			- <a name="t210303101704"></a>t210303101704 - p2 - check reasonnably "to-textable" value
 		- zip strings:
 			- check fields (container, exists)
 			- check at least two
@@ -336,9 +337,10 @@
 				- <a name="t210127195214"></a>t210127195214 - p2 - [fluency] - forbid agg(_.foos('f)) -> notice the 's'; already the case in fluent interface?				
 				- <a name="t210202163714"></a>t210202163714 - p2 - [hack] data: address temporary hack (.get)
 				- <a name="t210131141737"></a>t210131141737 - p3 - [bug?] - .countEach('f, 'h).by('g); countCombos (see 210131141737@w)
+				- <a name="t210304115503"></a>t210304115503 - p3 - [feature] - offer a pre-sorted version (also for merging)
 
 			- grouping: <a name="t210127195236"></a>t210127195236
-				- DWH/MDX: <a name="t210124100722"></a>t210124100722; add the likes of cascade, cube, rollups, grouping sets, ... e.g. .groupCascade('state %> 'cities, 'city %> 'zips) - see 201227150057
+				- DWH/MDX: <a name="t210124100722"></a>t210124100722; add the likes of cascade, cube, rollups, grouping sets, ... e.g. .groupCascade('state %> 'cities, 'city %> 'zips) - see 201227150057				
 
 			- counting:					
 				- <a name="t210131140932"></a>t210131140932 - countBy needs to accept _.allKeys; then create shorthand countByAll = countBy(_.allKeys)
@@ -356,6 +358,7 @@
 			- <a name="t210128130124"></a>t210128130124 - p2 - [fluency] - allow explicit use of in-memory join if one side is small enough ("hash" join) 
 			- <a name="t210117143536"></a>t210117143536 - p5 - also handle union within merging conf?
 			- <a name="t210124100649"></a>t210124100649 - p4 - [feature] - add multi-joins
+			- <a name="t210304115502"></a>t210304115502 - p3 - [feature] - offer a pre-sorted version (also for grouping)
 			- [guaranteed]:
 				- <a name="t201124153838"></a>t201124153838 - p3 - a bring "[guaranteed]" (no missing); or by default [research:x]?
 				- <a name="t201124153839"></a>t201124153839 - p3 - a join [guaranteed]? when not inner?				
@@ -363,12 +366,15 @@
 		- reducing:
 			- <a name="t210122151934"></a>t210122151934 - p2 - ActionsUUReducer0: use newer reducer rather, instead of old ToArray/ToSize/ToSum
 							
-		- pivoting:
+		- pivoting: <a name="pivoting"></a><a name="pivot"></a><a name="t210304120525"></a>t210304120525
 			- new keys:
 				- <a name="t210117192142"></a>t210117192142 - p4 - enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see [t210117192142](#t210117192142) for untuplify)
 				- <a name="t210202172304"></a>t210202172304 - p3 - unspecified: using opaque object as data (relates to [t210110094829](#t210110094829)) - try
 			- <a name="t210120171258"></a>t210120171258 - p2 - [feature] - add support for unpivoting
 			- <a name="t210117192221"></a>t210117192221 - p3 - configurable key separator	
+			- "pivone":
+				- <a name="t210303111953"></a>t210303111953: use different structure now
+				- <a name="t210303102200"></a>t210303102200: also allow selection for keyKey
 
 ===========================================================================
 - schema: <a name="schema"></a><a name="t210204152731"></a>t210204152731
@@ -565,7 +571,11 @@
 	- <a name="t210121170923"></a>t210121170923 - p5 - need some benchmarking numbers before optimizing, maybe use TCP-DS? (check license)
 	- <a name="t210104164036"></a>t210104164036 - p5 - UData as Vector\[Seq\[Any\]\] (relates to [t210104164037](#t210104164037))
 	- <a name="t210110100144"></a>t210110100144 - p5 - macros for [dataclass] to/from Obj + field names enum
-	- <a name="t210115095741"></a>t210115095741 - p2 - von neumann bottleneck: also give easy access to .par where applicable; for iterator: see [t210115095742](#t210115095742)
+	- <a name="t210115095741"></a>t210115095741 - von neumann bottleneck: also give easy access to .par where applicable; for iterator: see [t210115095742](#t210115095742)
+		- <a name="t210115095740"></a>t210115095740 - p2 - Seq version
+		- <a name="t210304124932"></a>t210304124932 - p2 - Iterator version
+			- ~~<a name="t210304125018"></a>t210304125018 - naive `.grouped` version~~ - see 210303141926 in the code for first pass
+			- <a name="t210303144449"></a>t210303144449 - investigate Future.traverse approach (trickier)			
 	- <a name="t210115095838"></a>t210115095838 - p5 - more reliance on meta to help with data, so as to minimize pattern matchings at runtime (eg see [t201019110649](#t201019110649) for reorderKeysRecursively, obj to gson, formatting value in table (array or not))
 	- <a name="t210121095207"></a>t210121095207 - p5 - look into scala-native (also see [t210109142406](#t210109142406) for matrices)
 	- <a name="t210121170909"></a>t210121170909 - p5 - add @inline, @switch, @tailrec, @specialized whenever relevant
@@ -576,12 +586,14 @@
 		- <a name="t210114170853"></a>t210114170853 - p5 - grouping: separate at least 11/1N/N1/NN atoms?
 		- <a name="t201019161520"></a>t201019161520 - p5 - aggregation: specialized version of sumby/countby/... rather than combos
 		- more optional vs [guaranteed] atoms version (formerly "A/B" versions): _FilterBy1, _AssertO1, ...		
-	- <a name="t210106120036"></a>t210106120036 - p5 - pointless as it is, point will be to project/retain *before* creating obj (data projection)		
+	- <a name="t210106120036"></a>t210106120036 - p5 - pointless as it is, point will be to project/retain *before* creating obj (data projection)
 	- <a name="t210121165741"></a>t210121165741 - p5 - does -Xdisable-assertions also turns of require? if not, is it possible? [build]
 	- plan: <a name="t210204112440"></a>t210204112440
 		- <a name="t210126171438"></a>t210126171438 - atom plan optimization (also relates to [t201027130649](#t201027130649)/abstract runner)
 			- predicate push downs,
-			- early pruning, ...
+			- early pruning,
+			- code generation
+			- ...
 		- optimize traversal if dag is chain, especially if nested
 		- plan caching?
 	- spark: <a name="t210204112444"></a>t210204112444
@@ -595,9 +607,12 @@
 ===========================================================================
 - spilling: <a name="spilling"></a> <a name="poor-man-scaling"></a><a name="t210204111309"></a>t210204111309
 	- _remarks_:
-		- <a name="rk210304115313"></a>rk210304115313 - this is basically a hack
+		- <a name="rk210304115313"></a>rk210304115313 - this is basically a hack, but well, this isn't called the rich-man scaling after all
+	- ~~<a name="t210304134747"></a>t210304134747 - p1 - GnuSortByFirstFieldHack~~
+	- ~~<a name="t210304134748"></a>t210304134748 - p1 - GnuJoinByFirstFieldHack~~	
 	- <a name="t210304094613"></a>t210304094613 - p3 - add missing GnuSortHack, wrapping eg: sort -t$'\t' -k1n,2,3r
-	- <a name="t210304095420"></a>t210304095420 - p3 - try windows: looks like GNU sort can be installed for windows as well: same options?
+	- <a name="t210304095420"></a>t210304095420 - p3 - try Windows: looks like GNU sort can be installed for windows as well: same options?
+	- <a name="t210304134826"></a>t210304134826 - p3 - confirm mac ok as-is
 	- <a name="t210304095755"></a>t210304095755 - p3 - simplying locale setting
 
 ===========================================================================
@@ -607,7 +622,7 @@
 	- indirection:
 		- spilling: see [t201131143901](#t201131143901)
 		- optim: see [t210204112444](#t210204112444)
-	- fluency:			
+	- fluency:
 		- <a name="t210122094521"></a>t210122094521 - p5 - provide convenient access to setting numPartitions
 		- <a name="t210121164813"></a>t210121164813 - p5 - provide convenient to mapPartition [performance]
 		- <a name="t210121164814"></a>t210121164814 - p5 - provide convenient to partition combiner [performance]
@@ -617,7 +632,7 @@
 	- logging:
 		- <a name="t210122092713"></a>t210122092713 - p5 - proper logging mgmt
 		- <a name="t210122092619"></a>t210122092619 - p5 - hide "Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties" message
-	- distributivity:		
+	- distributivity:
 		- <a name="t210123183101"></a>t210123183101 - p4 - @Distributivity - all the spots where distributity might be an issue (eg .head does not make sense unless sorted first)
 			- <a name="t210122094456"></a>t210122094456 - p5 - take/drop/sample
 	- misc:
