@@ -307,7 +307,7 @@
 			- <a name="t210109173114"></a>t210109173114 - p5 - [feature] - renest just up to n levels?
 			- <a name="t210109175621"></a>t210109175621 - p5 - [feature] - reproduce the optional "as" mechanism: for renest (see [t210116192032](#t210116192032) for generalization)
 			- <a name="t210122162650"></a>t210122162650 - p2 - [bug] - meta nest into: handle optional the way nest-under does
-			- renest: if all can be opt (see ?); relatest to [guaranteed]?
+			- renest: if all can be opt (see ?); relate to [guaranteed]?
 
 	===========================================================================
 	- z: HeadS: <a name="t210205113938"></a>t210205113938
@@ -732,7 +732,7 @@
 		
 	- <a name="t210118133408"></a>t210118133408 - p2 - [hettype] - type heterogeneity handling
 		- <a name="t210202115959"></a>t210202115959 - full-on support type heterogeneity [hettype]? big endeavor but may be worth the effort
-		- <a name="t210202115958"></a>t210202115958 - p2 - type heterogeneity [hettype] workaround (relatest to <a name="t210104164038"></a>t210104164038 for json manip) - especially cases like:```
+		- <a name="t210202115958"></a>t210202115958 - p2 - type heterogeneity [hettype] workaround (relates to [t210104164038](#t210104164038) for json manip) - especially cases like:```
 					[{"foo": 1}            , {"foo": "10+"}]            -->  [{"foo":"1"},            {"foo": "10+"}]
 					[{"foo": {"bar": "hi"}}, {"foo": "sup"}]            -->  [{"foo": {"bar": "hi"}}, {"foo": {"bar": "sup"}}}]
 					[{"foo": "bar"}        , {"foo": ["bar1", "bar2"]}] -->  [{"foo":["bar"]},        {"foo": ["bar1", "bar2"]}```
