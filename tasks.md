@@ -35,6 +35,7 @@
 	- <a name="t210129114731"></a>t210129114731 - p5 - provide convenient diffing mechanism (relates to [t210129114523](#t210129114523)), for both schema and data
 	- <a name="t210127173933"></a>t210127173933 - p2 - @Max3/@Max5 - add missing code (rationale for 3 or 5: if you need more than N, either you can use an intermediate state or you may just be doing something wrong)
 	- <a name="t210122161652"></a>t210122161652 - p1 - investigate grab/squash (orphan/combine) vs VO
+	- <a name="t210308145846"></a>t210308145846 - p2 - CallSite: look into https://github.com/com-lihaoyi/sourcecode
 	- heads:
 		- <a name="t201007093053"></a>t201007093053 - p4 - provide HeadPairO - forKeyPair, for group(_.firstKey).by(_.lastKey)
 		- <a name="t201021120753"></a>t201021120753 - p4 - provide HeadOptionO, eg as result of u.filter/u.find (see [t201023083923](#t201023083923))	
@@ -132,11 +133,12 @@
 	- <a name="t210128135801"></a>t210128135801 - p5 - what would a columnar in memory counterpart look like? look into/integrate with Apache Arrow? [research]
 	- <a name="t210129114523"></a>t210129114523 - p5 - provide both sorted (via meta) and unsorted equals? [term]: "equality" is tricky, is foo=3+bar=baz the "same" as bar=baz;foo=3? (also see [t210129114731](#t210129114731))
 	- <a name="t210110203020"></a>t210110203020 - p3 - [bug] - contains needs to be able to deal with multiplicity in nesting(s) - paths.values.filter(!o.contains(_))
-	- streamer: <a name="t210115115843"></a>t210115115843
+	- streamer: <a name="streamer"></a><a name="t210115115843"></a>t210115115843
 		- <a name="t210127193230"></a>t210127193230 - p3 - externalize streamer as its own independent library
-		- <a name="t210115104555"></a>t210115104555 - p5 - fix Iterator version
+		- <a name="t210115104555"></a>t210115104555 - p5 - <a name="iterator-streamer"></a>fix Iterator version
 			- <a name="t210116154537"></a>t210116154537 - p5 - rereading
 				- <a name="t210115103130"></a>t210115103130 - p5 - resulting missing implementations
+			- <a name="t210204105730"></a>t210204105730 - look into https://github.com/com-lihaoyi/geny - push model instead
 		- <a name="t210114145059"></a>t210114145059 - p5 - generalize StreamerType enum: inMemory, iterator, RDD
 		- <a name="t210117112314"></a>t210117112314 - p5 - take/drop/sample/head/last + related (takeRight, ...) issue with @Distributivity
 		- <a name="t210205121008"></a>t210205121008 - p3 - offer a toIteratorAndCloseable: (Iterator[Obj], Closeable) + aptus.Closeabled; also for Streamer
@@ -614,6 +616,7 @@
 	- <a name="t210304095420"></a>t210304095420 - p3 - try Windows: looks like GNU sort can be installed for windows as well: same options?
 	- <a name="t210304134826"></a>t210304134826 - p3 - confirm mac ok as-is
 	- <a name="t210304095755"></a>t210304095755 - p3 - simplying locale setting
+	- <a name="t210308150015"></a>t210308150015 - p2 - look into https://github.com/com-lihaoyi/os-lib instead of ProcessBuilder
 
 ===========================================================================
 - spark: <a name="spark"></a><a name="t210121164812"></a>t210121164812
@@ -676,6 +679,8 @@
 	- <a name="t201022170436"></a>t201022170436 - p5 - actually enfoce the likes of @aptus.fordevonly
 	- <a name="t210121171033"></a>t210121171033 - p5 - make sure instance of null are all legit (mark the legit ones so build can ignore)
 	- <a name="t210125110147"></a>t210125110147 - p3 - investigate sbt alternatives
+		- <a name="t210309100048"></a>t210309100048 - p3 - current build for non-core rely on symlink to gallia-core's project/*.scala files; no (reasonnable) sbt way?	
+	- <a name="t210308154253"></a>t210308154253 - p3 - confirm not possible for 2.12: "-Yimports:java.lang,scala,scala.Predef,scala.util.chaining,aptus.Anything_"
 
 ===========================================================================
 - testing: test: <a name="testing"></a><a name="test"></a><a name="t210205114038"></a>t210205114038
@@ -775,7 +780,12 @@
 
 ===========================================================================
 - more: <a name="more"></a><a name="t210124100537"></a>t210124100537
-	
+
+	- DSL: <a name="dsl"></a><a name="t210313130217"></a>t210313130217 - expand on the idea of [language-agnostic DSL](https://github.com/galliaproject/gallia-core/blob/init/README.md#what-about-other-programming-languages)
+		- <a name="kotlin"></a><a name="t210313130234"></a>t210313130234 - create kotlin PoC, at least for client code interface (internals can reuse scala)
+		- <a name="python"></a><a name="t210313130235"></a>t210313130235 - create python PoC, at least for client code interface (any reasonnable way to reuse scala's internals?)
+
+	---------------------------------------------------------------------------
 	- integration: <a name="integration"></a><a name="t210124100540"></a>t210124100540 - investigate dependencies first and foremost
 		- indirection:
 			- graph: see [t210116120349](#t210116120349) (for plan DAG)
