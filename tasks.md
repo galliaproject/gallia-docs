@@ -518,7 +518,7 @@
 		- misc: <a name="t210205114028"></a>t210205114028
 			- <a name="t210114201159"></a>t210114201159 - p5 - implement missing convenience creation methods (eg "hello world".content, ...)
 			- <a name="t210114144622"></a>t210114144622 - p5 - also allow iterator mode for both JDBC and mongodb
-			
+			- <a name="t210330110804"></a>t210330110804 - p5 - separate each as their own atoms
 		- inferring: <a name="t210205114025"></a>t210205114025
 			- <a name="t210122135629"></a>t210122135629 - p5 - [missing] - implement mirror index in IndexEntry
 			- <a name="t210204151934"></a>t210204151934 - p1 - [bug] - if file/url is empty
@@ -572,7 +572,7 @@
 - performance: [optim]: <a name="performance"></a><a name="optim"></a><a name="t210121095401"></a>t210121095401
 	- <a name="t210121170923"></a>t210121170923 - p5 - need some benchmarking numbers before optimizing, maybe use TCP-DS? (check license)
 	- <a name="t210104164036"></a>t210104164036 - p5 - UData as Vector\[Seq\[Any\]\] (relates to [t210104164037](#t210104164037))
-	- <a name="t210110100144"></a>t210110100144 - p5 - macros for [dataclass] to/from Obj + field names enum
+	- ~~macros: [moved](#macros)~~
 	- <a name="t210115095741"></a>t210115095741 - von neumann bottleneck: also give easy access to .par where applicable; for iterator: see [t210115095742](#t210115095742)
 		- <a name="t210115095740"></a>t210115095740 - p2 - Seq version
 		- <a name="t210304124932"></a>t210304124932 - p2 - Iterator version
@@ -603,8 +603,16 @@
 		- <a name="t210126171605"></a>t210126171605 - provide Obj Encoder
 		- <a name="t210204112431"></a>t210204112431 - create an Array backed (at least initially) Objs due to prominence in spark?
 		- <a name="t201126163157"></a>t201126163157 - p5 - [optim] - ensure distinct: to avoid looping more than necessary, consider sort followed by rdd.mapPartitions(_.sliding(size, step), preservesPartitioning)?
-		- <a name="t201126111306"></a>t201126111306 - p5 - confirm no better way; no {left,right,inner}CoGroup available it seems; note: using the {left,right,inner}OuterJoin here would force us to redo an unncessary re-grouping         
 		- <a name="t210122095106"></a>t210122095106 - p5 - confirm no performance impact: .filter(_._2._1.nonEmpty).filter(_._2._2.nonEmpty) vs combined
+
+===========================================================================
+- macros: [macros]: <a name="macros"></a><a name="t210329171941"></a>t210329171941
+	- ~~<a name="t210110100144"></a>t210110100144 - p5 - macros for [dataclass] to/from Obj/Objs~~
+	- t210325105833 - classes need to be need to be in scope (eg `Foo` as opposed to `my.pck.Foo`); any way around that?
+	- t210330102622 - reading enum:
+    	- t210330102827 - must first capture enum name in `BasicType._Enum`, like for Cls.name    	
+    - t210326131124 - better error handling/messages, especially around `TypeNode.parse`
+	- t210330103540 - check of schema compliance (more generally relates to [t210115153347](#t210115153347))
 
 ===========================================================================
 - spilling: <a name="spilling"></a> <a name="poor-man-scaling"></a><a name="t210204111309"></a>t210204111309
@@ -630,29 +638,57 @@
 		- <a name="t210121164813"></a>t210121164813 - p5 - provide convenient to mapPartition [performance]
 		- <a name="t210121164814"></a>t210121164814 - p5 - provide convenient to partition combiner [performance]
 	- i/o:
-		- <a name="t210121164950"></a>t210121164950 - p3 - [missing] - actually handle charset
-		- <a name="t210121164951"></a>t210121164951 - p3 - [missing] - actually handle compression
+		- in:
+			- <a name="t210121164950"></a>t210121164950 - p3 - [missing] - actually handle charset
+			- <a name="t210121164951"></a>t210121164951 - p3 - [missing] - actually handle compression
+			- <a name="t210330110143"></a>t210330110143 - p2 - align with core's io.in abstraction: fluency, actions & atoms
+			- <a name="t210330110534"></a>t210330110534 - separate dropping as atom (related to [t210330110804](#t210330110804))
+		- out:		
+			- <a name="t210330110144"></a>t210330110144 - p2 - align with core's io.out abstraction: fluency, actions & atoms
+			- <a name="t210121164951"></a>t210121164951 - configurable compression
+			- <a name="t210326155456"></a>t210326155456 - schema: any way not to write it as part-00000?
+	- actions:
+		- join:
+			- cogroup:
+				- <a name="t201126111306"></a>t201126111306 - p5 - confirm no better way; no {left,right,inner}CoGroup available it seems; note: using the {left,right,inner}OuterJoin here would force us to redo an unncessary re-grouping         			
+			- hash join: <a name="t210330112735"></a>t210330112735
+				- <a name="t210322111234"></a>t210322111234 - [res] - determine if using hash join is implicit (if Seq) or explicit (via conf), or a combination
+				- <a name="t210324091847"></a>t210324091847 - don't fall back on shuffling join for JoinType.full (trick is filtering out right keys already joined)
+				- <a name="t210322110948"></a>t210322110948 - don't transit through rdd, broadcast directly
+				- <a name="t210324091033"></a>t210324091033 - enforce the "with left bias" (the big one is on the left)
 	- logging:
 		- <a name="t210122092713"></a>t210122092713 - p5 - proper logging mgmt
 		- <a name="t210122092619"></a>t210122092619 - p5 - hide "Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties" message
 	- distributivity:
 		- <a name="t210123183101"></a>t210123183101 - p4 - @Distributivity - all the spots where distributity might be an issue (eg .head does not make sense unless sorted first)
 			- <a name="t210122094456"></a>t210122094456 - p5 - take/drop/sample
+				- <a name="t210330105752"></a>t210330105752 - p5 - take/drop
+					- ~~<a name="t210330105753"></a>t210330105753 - p5 - quick-and-dirty version (won't work properly if n is bigger than partition size)~~
+					- <a name="t210312092358"></a>t210312092358 - p5 - full support: if n is bigger than partition size
+				- <a name="t210330105755"></a>t210330105755 - p5 - sample
+	- internals:
+		- streamer:
+			- <a name="t210322130619"></a>t210322130619 - generalize RddStreamer's ClassTag to Streamer + as WTT (relates to [t210116153713](#t210116153713))
+		- <a name="t210315113950"></a>t210315113950 - change back `new JsonArray()` to `new JsonArray(elements.size)`: caused issues with EMR (conflicting gson versions)		
+		- <a name="t210322100113"></a>t210322100113 - confirm/investigate: set master
+		- <a name="t210322101134"></a>t210322101134 - allow providing non-default master in local/standalone
 	- misc:
-		- <a name="t210121164949"></a>t210121164949 - p5 - handle Serialization issues (likely will happen when)		
+		- ~~<a name="t210121164949"></a>t210121164949 - p5 - handle Serialization issues (likely will happen when)~~
 		- <a name="t210123183102"></a>t210123183102 - p4 - @Scalability - places where scalability might be an issue, especially if processing all in-memory at the moment: eg cartesian product (and reverse), reductions, unarray, string formatting
 		- <a name="t210122101756"></a>t210122101756 - p2 - [hack] - address giant hack (setting StartReadFluencyRDD.streamLinesViaRDD(sc))
 		- <a name="t210122101757"></a>t210122101757 - p3 - [missing] - cache SparkContext
 		- <a name="t210122102109"></a>t210122102109 - p5 - flatMap: address casting .asInstanceOf[SparkColl[B]]
 		- <a name="t210122094438"></a>t210122094438 - p2 - change to Long for size by default? maybe offer sizeLong: Long and sizeInt: Int; relates to [t201209095425](#t201209095425) (@IntSize)
 		- <a name="t201216101136"></a>t201216101136 - p5 - [research] - try a org.apache.spark.sql.Dataset[Obj] counterpart; why is Dataset under sql?
-		- <a name="t210204095516"></a>t210204095516 - p4 - try spark 3.x
+		- ~~<a name="t210204095516"></a>t210204095516 - p4 - try spark 3.x~~
 		- <a name="t201106123320"></a>t201106123320 - catch error earlier (for _.rdd(...))
 		- <a name="t210204110958"></a>t210204110958 - actually try a reduce
 		- <a name="t210204110959"></a>t210204110959 - actually try a fork
 		- <a name="t210204110908"></a>t210204110908 - limit still around 2GB?		
 		- <a name="t201101115807"></a>t201101115807 - investigate "The iterator will consume as much memory as the largest partition in this RDD"
 		- <a name="t201101121424"></a>t201101121424 - confusing: `preservesPartitioning` indicates whether the input function preserves the partitioner, which should be `false` unless this is a pair RDD and the input function doesn't modify the keys.
+		- <a name="t210322165646"></a>t210322165646 - "hadoop-client-api" bug (only with 2.13?)
+		- <a name="t210325115753"></a>t210325115753 - testrun.sh: try an https://github.com/com-lihaoyi/Ammonite version
 
 ===========================================================================
 - build: <a name="build"></a><a name="t210121165130"></a>t210121165130
