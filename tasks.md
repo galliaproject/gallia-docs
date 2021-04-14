@@ -49,7 +49,7 @@
 - DAG: <a name="DAG"></a><a name="t210205113853"></a>t210205113853
 	- <a name="t210116120349"></a>t210116120349 - p5 - investigate existing graph libs rather
 	- <a name="t210128152949"></a>t210128152949 - p2 - add missing cycle detection
-	- <a name="t210106101457"></a>t210106101457 - p4 - meta-only run - may be great for the likes of <a name="t210115115736"></a>t210115115736 (generate intermediate [dataclass])
+	- ~~<a name="t210106101457"></a>t210106101457 - p4 - meta-only run - may be great for the likes of <a name="t210115115736"></a>t210115115736 (generate intermediate [dataclass])~~
 	- <a name="t210106101459"></a>t210106101459 - p5 - data-only run, requires standalone data version first (see [t210104164037](#t210104164037)); may also be complicated by atoms that require pre/post schemata (eg _JsonObjectFileInputU, _SortByAll, ...)
 	- meta:
 		- <a name="t201214105653"></a>t201214105653 - p4 - [hack] - address "resultCls" hack
@@ -720,7 +720,14 @@
 
 ===========================================================================
 - testing: test: <a name="testing"></a><a name="test"></a><a name="t210205114038"></a>t210205114038
-	- <a name="t210114171154"></a>t210114171154 - p5** - port "quick tests" to actual tests
+	- <a name="testing-library"></a><a name="t210114171154"></a>t210114171154 - p2 - adopt testing library (or at least extend sbt-testing interfaces); it must:
+		- support SBT
+		- have a compatible license
+		- offer simple unit testing: "foo(bar) is baz"
+		- not introduce a lot of new dependencies
+		- support scala 2.13
+		- ideally offer method annotation
+	- <a name="t210413103408"></a>t210413103408 - p3 - allow method annotations rather
 
 ===========================================================================
 - scala: <a name="scala"></a><a name="t210121165423"></a>t210121165423
