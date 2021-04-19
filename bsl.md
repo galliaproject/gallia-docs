@@ -49,7 +49,7 @@ Yes, WIP (see [MariaDB](https://mariadb.com/bsl-faq-adopting/#contrib))
   - ["Why Funding Open Source is Hard"](https://hackernoon.com/why-funding-open-source-is-hard-652b7055569d) by Eric Berry (_Dec 2017_)
   - ["Not all open source is created equal"](https://www.computerweekly.com/blog/Data-Matters/Not-all-open-source-is-created-equal) by Marc Linster (_Jun 2020_)
   - ["Business Source License Adoption"](https://blog.adamretter.org.uk/business-source-license-adoption/) by Adam Retter (_Mar 2020_)
-
+  - ["Lack of leadership in open source results in source-available licenses"](https://techcrunch.com/2019/05/30/lack-of-leadership-in-open-source-results-in-source-available-licenses) by Salil Deshpande (_May 2019_) 
 <br/>
 <br/>
 <br/>
