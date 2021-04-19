@@ -342,9 +342,11 @@
 				- <a name="t210304115503"></a>t210304115503 - p3 - [feature] - offer a pre-sorted version (also for merging)
 
 			- grouping: <a name="t210127195236"></a>t210127195236
-				- DWH/MDX: <a name="t210124100722"></a>t210124100722; add the likes of cascade, cube, rollups, grouping sets, ... e.g. .groupCascade('state %> 'cities, 'city %> 'zips) - see 201227150057				
+				- DWH/MDX-like: <a name="t210124100722"></a>t210124100722
+					- <a name="t210124100724"></a>t210124100724; emulate ON ROW/ON COLUMN pivot (as dialect maybe?)
+					- <a name="t210124100723"></a>t210124100723; add the likes of cascade, cube, rollups, grouping sets, ... e.g. .groupCascade('state %> 'cities, 'city %> 'zips) - see 201227150057
 
-			- counting:					
+			- counting:
 				- <a name="t210131140932"></a>t210131140932 - countBy needs to accept _.allKeys; then create shorthand countByAll = countBy(_.allKeys)
 
 		- filter z:
