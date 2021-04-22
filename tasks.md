@@ -842,6 +842,10 @@
 		- <a name="t210204095520"></a>t210204095520 - low priority - visualization: look into vegas?
 
 	---------------------------------------------------------------------------
+	- visual query builder: <a name="visual-query-builder"></a><a name="t210422100631"></a>t210422100631
+		- provide webapp to visually build transformation pipelines; could open-source core and charge for that instead?
+
+	---------------------------------------------------------------------------
 	- scripting: <a name="scripting"></a><a name="t210124100126"></a>t210124100126
 		- make it easy to use gallia from script (eg bash); for improved performance, could look into nailgun or custom socket-based alternative?
 
