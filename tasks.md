@@ -787,7 +787,7 @@
 			- <a name="t210205065320"></a>t210205065320 - p2 - rename to .grab to .access or .orphan? .squash to .combine?
 
 ===========================================================================
-- research:	<a name="research"></a><a name="t210205114050"></a>t210205114050
+- research: <a name="research"></a><a name="res"></a><a name="t210205114050"></a>t210205114050
 	- <a name="t210202085958"></a>t210202085958 - p2 - create a special action for simplest transform 1 to 1 that ignores requiredness; like "morph" for "transmute" (arbitrarily)	
 	- <a name="t210128160642"></a>t210128160642 - p4 - expect import gallia.local._ to unlock e.g. take/drop; pertains to @Distributivity (<a name="t210123183101"></a>t210123183101); contrats with import gallia.spark._
 	- <a name="t201108093951"></a>t201108093951 - p3 - should z.writeJsons return unit or a z (may need to reread input) - has a big impact on [spark] (see checkpointing: <a name="t210121160956"></a>t210121160956)
@@ -798,6 +798,7 @@
 	- <a name="t210202094041"></a>t210202094041 - p1 - semantic conflict for "commas": sometimes means EACH, sometimes means AND; maybe change one of them to always be myAction('f ~ 'g ~ 'h) instead of myAction('f, 'g, 'h)
 	- <a name="t210128161346"></a>t210128161346 - p1 - pivot: dissociate top-level groupBy ("rows") from the rest of the pivoting (also see former "pivone" feature)
 	- <a name="t210202164007"></a>t210202164007 - p3 - grouping: allow groupby with redundant keys in grouper/groupee?
+	- <a name="t210426094707"></a>t210426094707 - p4 - ability to provide FK-like relations as implicit, to streamline joins (when key names differ)
 	
 	- dialects:
 		- <a name="t210202113713"></a>t210202113713 - p3 - consider providing "wrappers" for very at least basic queries people are familiar with such as: gallia.dialects.sql.select('foo, 'bar).from("jdbc://.../table1").where('baz == 3); mostly to help "port" code initially
