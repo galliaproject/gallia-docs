@@ -572,15 +572,17 @@
 
 ===========================================================================
 - performance: [optim]: <a name="performance"></a><a name="optim"></a><a name="t210121095401"></a>t210121095401
-	- <a name="t210121170923"></a>t210121170923 - p5 - need some benchmarking numbers before optimizing, maybe use TCP-DS? (check license)
-	- <a name="t210104164036"></a>t210104164036 - p5 - UData as Vector\[Seq\[Any\]\] (relates to [t210104164037](#t210104164037))
 	- ~~macros: [moved](#macros)~~
+	- <a name="t210121170923"></a>t210121170923 - p5 - need some benchmarking numbers before optimizing, maybe use TCP-DS? (check license)
+	- <a name="t210524103421"></a>t210524103421 - p5 - single Obj:
+	  - <a name="t210104164036"></a>t210104164036 - p5 - UData as Vector\[Seq\[Any\]\] (relates to [t210104164037](#t210104164037))
+	  - <a name="t210524103406"></a>t210524103406 - p5 - use mutable collection for in-place operations?
+	  - <a name="t210115095838"></a>t210115095838 - p5 - more reliance on meta to help with data, so as to minimize pattern matchings at runtime (eg see [t201019110649](#t201019110649) for reorderKeysRecursively, obj to gson, formatting value in table (array or not))
 	- <a name="t210115095741"></a>t210115095741 - von neumann bottleneck: also give easy access to .par where applicable; for iterator: see [t210115095742](#t210115095742)
 		- <a name="t210115095740"></a>t210115095740 - p2 - Seq version
 		- <a name="t210304124932"></a>t210304124932 - p2 - Iterator version
 			- ~~<a name="t210304125018"></a>t210304125018 - naive `.grouped` version~~ - see 210303141926 in the code for first pass
 			- <a name="t210303144449"></a>t210303144449 - investigate Future.traverse approach (trickier)			
-	- <a name="t210115095838"></a>t210115095838 - p5 - more reliance on meta to help with data, so as to minimize pattern matchings at runtime (eg see [t201019110649](#t201019110649) for reorderKeysRecursively, obj to gson, formatting value in table (array or not))
 	- <a name="t210121095207"></a>t210121095207 - p5 - look into scala-native (also see [t210109142406](#t210109142406) for matrices)
 	- <a name="t210121170909"></a>t210121170909 - p5 - add @inline, @switch, @tailrec, @specialized whenever relevant
 	- opt-out:
@@ -730,6 +732,7 @@
 		- support scala 2.13
 		- ideally offer method annotation
 	- <a name="t210413103408"></a>t210413103408 - p3 - allow method annotations rather
+	- <a name="t210513145651"></a>t210513145651 - p3 - try com-lihaoyi/utest, license is MIT (burried in the build)
 
 ===========================================================================
 - scala: <a name="scala"></a><a name="t210121165423"></a>t210121165423
@@ -872,7 +875,7 @@
 		- <a name="t210124095616"></a>t210124095616: may be tricky with transformations, eg if you fuse first and last name into name, how are the two "merged" as full name somehow? (eg with https://schema.org/givenName and https://schema.org/familyName)
 
 	---------------------------------------------------------------------------
-	- graph querying: <a name="t210124095504"></a>t210124095504
+	- graph querying: <a name="t210124095504"></a>t210124095504 - reproduce at least basic traversal/querying (look at cypher/gremlin/sparql)
 		- see PoC (very bare)
 		
 	---------------------------------------------------------------------------
