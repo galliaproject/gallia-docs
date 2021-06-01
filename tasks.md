@@ -706,6 +706,9 @@
 		- ~~hacky support (see 210214150322)~~
 		- ~~proper support~~
 	- <a name="t210121101238"></a>t210121101238 - p3 - prototype for scala 3.x
+		- <a name="t210601114407"></a>t210601114407 - p3 - road block: spark support for scala 3.0
+		- <a name="t210601114408"></a>t210601114408 - p3 - road block: usage of scala.reflect.runtime.universe
+		- <a name="t210601114409"></a>t210601114409 - p3 - road block: usage of enumeratum
 	- <a name="t210121165120"></a>t210121165120 - p5 - shade guava [spark]
 	- <a name="t210121165147"></a>t210121165147 - p5 - add support for test coverage
 	- <a name="t210121165219"></a>t210121165219 - p5 - address warnings / add more scalac options
@@ -755,7 +758,7 @@
 		- if anything more powerful is needed then must drop to full-on java/scala/guava/commons way
 		- it can also be seen as a starting point, for someone to see what is used under the hood and expand from it if needed; eg: val content: String = "/my/file.txt".readFileContent()
 	- <a name="t210116165619"></a>t210116165619 - p5* - port the rest of aptus (much larger)
-	- <a name="t210116165620"></a>t210116165620 - p5 - externalize aptus in its own stand alone utility library
+	- ~~<a name="t210116165620"></a>t210116165620 - p5 - externalize aptus in its own stand alone utility library~~ --> see https://github.com/aptusproject/aptus-core
 	- <a name="t210116165559"></a>t210116165559 - p5 - rename ".as" to ".in"? [research]
 	- <a name="t210123101634"></a>t210123101634 - p2 - [bug] - significantFigures vs maxDecimal
 	- <a name="t210204095900"></a>t210204095900 - p4 - regexes could use a much more thorough treatment
