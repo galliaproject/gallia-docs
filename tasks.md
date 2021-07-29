@@ -132,7 +132,7 @@
 	- <a name="t210114154924"></a>t210114154924 - p5 - read first line (UrlLike.firstLine) - generalize to N lines + make optional + cache
 	- <a name="t210128135801"></a>t210128135801 - p5 - what would a columnar in memory counterpart look like? look into/integrate with Apache Arrow? [research]
 	- <a name="t210129114523"></a>t210129114523 - p5 - provide both sorted (via meta) and unsorted equals? [term]: "equality" is tricky, is foo=3+bar=baz the "same" as bar=baz;foo=3? (also see [t210129114731](#t210129114731))
-	- <a name="t210110203020"></a>t210110203020 - p3 - [bug] - contains needs to be able to deal with multiplicity in nesting(s) - paths.values.filter(!o.contains(_))
+	- ~~<a name="t210110203020"></a>t210110203020 - p3 - [bug] - contains needs to be able to deal with multiplicity in nesting(s) - paths.values.filter(!o.contains(_))~~
 	- streamer: <a name="streamer"></a><a name="t210115115843"></a>t210115115843
 		- <a name="t210127193230"></a>t210127193230 - p3 - externalize streamer as its own independent library
 		- <a name="t210115104555"></a>t210115104555 - p5 - <a name="iterator-streamer"></a>fix Iterator version
