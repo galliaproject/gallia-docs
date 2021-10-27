@@ -282,7 +282,7 @@
 
 		- transform-like:
 			- fission/fuse:
-				- <a name="t210115175745"></a>t210115175745 - p2 - [hack][bug] - fission/fuse removals
+				~~- <a name="t210115175745"></a>t210115175745 - p2 - [hack][bug] - fission/fuse removals~~
 
 			- generate:
 				- <a name="t210202164324"></a>t210202164324 - p2 - missing GenerateZV/UZ/V
@@ -571,7 +571,7 @@
 			- <a name="t210128164040"></a>t210128164040 - corresponding write [fluency] - eg schema(_.exclude), schema(_.json), schema(_.fileName("foo")), .schema(_.compression)
 
 ===========================================================================
-- performance: [optim]: <a name="performance"></a><a name="optim"></a><a name="t210121095401"></a>t210121095401
+- performance: optim: [optim]: <a name="performance"></a><a name="optim"></a><a name="t210121095401"></a>t210121095401
 	- ~~macros: [moved](#macros)~~
 	- <a name="t210121170923"></a>t210121170923 - p5 - need some benchmarking numbers before optimizing, maybe use TCP-DS? (check license); using dbNSFP for now
 	- <a name="t210524103421"></a>t210524103421 - p5 - single Obj:
@@ -611,6 +611,7 @@
 		- <a name="t201126163157"></a>t201126163157 - p5 - [optim] - ensure distinct: to avoid looping more than necessary, consider sort followed by rdd.mapPartitions(_.sliding(size, step), preservesPartitioning)?
 		- <a name="t210122095106"></a>t210122095106 - p5 - confirm no performance impact: .filter(_._2._1.nonEmpty).filter(_._2._2.nonEmpty) vs combined
 	- <a name="t210621112845"></a>t210621112845 - p5 - provide backend specialized versions of `.stream()`, so that some operations (e.g. projection/selections) can be delegated to backend technology
+	- <a name="t210730092134"></a>t210730092134 - p5 - replace gson for JSON handling
 
 ===========================================================================
 - macros: [macros]: <a name="macros"></a><a name="t210329171941"></a>t210329171941
@@ -794,7 +795,8 @@
 		- renamings: <a name="t210202165617"></a>t210202165617
 			- <a name="t210121105809"></a>t210121105809 - p2 - rename HeadU/HeadZ to HeadO/HeadS			
 			- <a name="t210205065320"></a>t210205065320 - p2 - rename to .grab to .access or .orphan? .squash to .combine?
-
+		- <a name="t210825142526"></a>t210825142526 - generate: find a name to differentiate eg 2-to-1 from 1-to-2, the same way as fuse/fission do; maybe fusePreserve/fissionPreserve?
+		
 ===========================================================================
 - research: <a name="research"></a><a name="res"></a><a name="t210205114050"></a>t210205114050
 	- <a name="t210202085958"></a>t210202085958 - p2 - create a special action for simplest transform 1 to 1 that ignores requiredness; like "morph" for "transmute" (arbitrarily)	
