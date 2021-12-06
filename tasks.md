@@ -62,7 +62,7 @@
 - types: <a name="types"></a><a name="t210121124808"></a>t210121124808
 	- <a name="t210115151942"></a>t210115151942 - p1 - @TypeMatching/@PartialTypeMatching - to help find where types are being pattern-matched easily
 
-	- <a name="t210110094829"></a>t210110094829 - p1 - opaque nesting: accept Obj as value, albeit the standalone version (see [t210104164037](#t210104164037)); do not limit types to [basictype]; could also help where need to provide newKeys (eg <a name="t210202172304"></a>t210202172304)
+	- <a name="t210110094829"></a>t210110094829 - p1 - opaque nesting: accept Obj as value, albeit the standalone version (see [t210104164037](#t210104164037)); do not limit types to [basictype]; could also help where need to provide newKeys (eg [t210202172304](#t210202172304))
 	- <a name="t210110095252"></a>t210110095252 - p5 - BLOB/CLOB (for now must use base64ed version)
 		- <a name="t210128161507"></a>t210128161507 - p5 - investigate typical unstructured data (videos, pix, ...) manipulations
 	- <a name="t210115144940"></a>t210115144940 - p5 - finalise "null" representation handling (null vs NaN vs [] vs None vs ...)
@@ -184,7 +184,7 @@
 	- output: <a name="t210205113916"></a>t210205113916
 		- <a name="t210204163720"></a>t210204163720 - p3 - check writable
 		
-	---------------------------------------------------------------------------			
+	---------------------------------------------------------------------------
 	- types: <a name="t210205113919"></a>t210205113919
 		- <a name="t210201103739"></a>t210201103739 - p2 - validate T for .typed
 		- <a name="t210201164749"></a>t210201164749 - p2 - if ignoring container (eg .stringx('f)), validate not changing container type		
@@ -196,7 +196,7 @@
 		- transform z to x:
 			- <a name="t210202155459"></a>t210202155459 - p1 - verify input is indeed z
 			
-	---------------------------------------------------------------------------			
+	---------------------------------------------------------------------------
 	- errors: <a name="t210205113922"></a>t210205113922
 		- <a name="t210121101206"></a>t210121101206 - p2 - homogenize the errors mechanism
 			- <a name="t210121101207"></a>t210121101207 - meta level
@@ -211,7 +211,7 @@
 		- <a name="t210127134525"></a>t210127134525 - macro version if statically provided key (eg .remove('foo) vs .remove(myKeyArg) )
 		
 	---------------------------------------------------------------------------
-	- actions: <a name="t210205113925"></a>t210205113925		
+	- actions: <a name="t210205113925"></a>t210205113925
 		- pivot:
 			- <a name="t210115175242"></a>t210115175242 - p2 - add missing runtime validation of newKeys
 			- <a name="t210303101704"></a>t210303101704 - p2 - check reasonnably "to-textable" value
@@ -362,6 +362,7 @@
 			- <a name="t210128130124"></a>t210128130124 - p2 - [fluency] - allow explicit use of in-memory join if one side is small enough ("hash" join) 
 			- <a name="t210117143536"></a>t210117143536 - p5 - also handle union within merging conf?
 			- <a name="t210124100649"></a>t210124100649 - p4 - [feature] - add multi-joins
+			- <a name="t210304115501"></a>t210304115501 - p4 - [feature] - offer a multiple-keys join (workaround: generate a temporary field)
 			- <a name="t210304115502"></a>t210304115502 - p3 - [feature] - offer a pre-sorted version (also for grouping)
 			- [guaranteed]:
 				- <a name="t201124153838"></a>t201124153838 - p3 - a bring "[guaranteed]" (no missing); or by default [research:x]?
@@ -386,7 +387,7 @@
 		- <a name="rk210127114008"></a>rk210127114008 - a schema is really just data about data (hence "meta"-data);
 		- <a name="rk210127114009"></a>rk210127114009 - specifically a schema can be seen as coarse statistics about the data
 	- io: see [t210128103821](#t210128103821)	
-	- <a name="t210124100957"></a>t210124100957 - p5 - a "confirm" schema action, e.g. [...].confirmSchema[MyDataClass] or .confirmSchema('foo.string, 'bar.int) or .confirmSchema("my/file")		
+	- <a name="t210124100957"></a>t210124100957 - p5 - a "confirm" schema action, e.g. [...].confirmSchema[MyDataClass] or .confirmSchema('foo.string, 'bar.int) or .confirmSchema("my/file")
 	- <a name="t210126173150"></a>t210126173150 - p5** - ambitious "[backtracking]" mode [research], whereby no input schema is provided and instead each step ensure consistency with one another only (e.g. don't add a field that was already added in an earlier step); relates to [t210118133408](#t210118133408) [hettype]
 	- <a name="t210128165110"></a>t210128165110 - p5** - going to/from schema formats (relate to io's <a name="t210128103821"></a>t210128103821 - generalize schema i/o for any schema-like format)
 		JSON schema (see [t210128163913](#t210128163913)), avro (see [t210128163914](#t210128163914)), ES mappings (see [t201028094710](#t201028094710)), ...
@@ -458,7 +459,7 @@
 			  	- <a name="t210204142940"></a>t210204142940 - cassandra (CQL, via JDBC?)
 				- <a name="t210204140103"></a>t210204140103 - redis
 
-		---------------------------------------------------------------------------								
+		---------------------------------------------------------------------------					
 		- in memory: <a name="t210205113946"></a>t210205113946
 			- <a name="t210128163912"></a>t210128163912 - Spark Row
 			- <a name="t210117105638"></a>t210117105638 - [dataclass] - (see code 210117105638@w); also see [t210128163910](#t210128163910) for source code
@@ -540,6 +541,7 @@
 				- <a name="t201103174026"></a>t201103174026 - p3 - [bug] - handle rarer case where columns names are repeated? use _1, or fail if values differ for two columns with the same name?
 				- <a name="t201028110146"></a>t201028110146 - a tsv/csv convention that allows providing basic types succinctly, eg in header 'age:integer' (instead of just 'age'), favorite_colors:strings(","), middle_name:string?(""), ...; [research]
 				- <a name="t210116110159"></a>t210116110159 - p5 - support header at more than n=0? or only as preproc? (relates to [t210122135525](#t210122135525))
+				- <a name="t210116110201"></a>t210116110201 - p2 - allow trailing empty line? or force it? [res] allowing both encourages inconsistent practices
 				- inferring:
 					- <a name="t210122135629"></a>t210122135629 - p5 - implement mirror index in IndexEntry
 					- <a name="t210204151934"></a>t210204151934 - p1 - [bug] - if table is empty
@@ -832,7 +834,7 @@
 		- <a name="t210202101142"></a>t210202101142 - p2 - keep "accessor" term (eg HeadZAccessors)?
 		- target selection:
   			- <a name="t210201151634"></a>t210201151634 - p2 - (target) replace "Query" with "Selection" throughout? 
-  			- <a name="t210202090211"></a>t210202090211 - p2 - homogenize across "target" and "selection" packages			
+  			- <a name="t210202090211"></a>t210202090211 - p2 - homogenize across "target" and "selection" packages
   			- <a name="t210202090526"></a>t210202090526 - p2 - rename and homogenize the likes of "Duo", "HT", "HasType"
 
 ===========================================================================
