@@ -15,6 +15,7 @@ WIP
   - Duplicate keys being allowed: `echo '{"foo":"hello", "foo":3}' | jq -c # returns {"foo":3}`
   - Key-quoting is mandatory, which seems wasteful most of the time
   - Keys are limited to strings, although this can be argued to be a good thing
+  - Keys order is not guaranteed to be preserved (TBC)
 - other misc oddness:
   - see the likes of [this SO comment](https://stackoverflow.com/questions/1580647/json-why-are-forward-slashes-escaped#comment14144177_1580682)
   - TODO: find more of the sort
