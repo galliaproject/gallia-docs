@@ -4,21 +4,68 @@ WIP
 
 Also see [_data modeling.md_](modeling.md)
 
-- Was probably never meant to become the standard it has become
-- Has no official notions of schema: JSON Schemas are an afterthought and unaffiliated(?)
-- Ambiguity over the semantics of: `{"foo": "hello", "bar": null}` vs `{"foo": "hello", "bar": []}` vs `{"foo": "hello"}`; this means people choose one arbitrarily and sometimes imparts alternative semantics to each (and often do not document that)
-- JSON array are painful to process when big, which is why "JSON Lines" (https://jsonlines.org/) prospered
-- JSON aims to be part human friendly, part machine friendly; it is less human friendly than YAML or HOCON, and much less machine friendly than say alternatives like Avro, protobuf, etc; This isn't a problem in and of itself, only insofar as people use it for just about everything irrespective of who/what will consume it (human or machine)
-- Data types:
-  - It's dearly missing the Integer type (possibly my biggest pet peeve with it)
-  - It's missing a "flag" type, which could be achieved with an optional "Unit" value; people resort to using a boolean which is wasteful if only one boolean value is ever used; flags are especially useful when extremely rare.
-  - Some may argue a character type would have been useful too
-- Keys:
-  - Duplicate keys being allowed: `echo '{"foo":"hello", "foo":3}' | jq -c # returns {"foo":3}`
-  - Key-quoting is mandatory, which seems wasteful most of the time
-  - Keys are limited to strings, although this can be argued to be a good thing
-  - Keys order is not guaranteed to be preserved (TBC)
-- other misc oddness:
-  - see the likes of [this SO comment](https://stackoverflow.com/questions/1580647/json-why-are-forward-slashes-escaped#comment14144177_1580682)
-  - TODO: find more of the sort
-
+- <a name="220104142500"></a>Was probably never meant to become the standard it has become
+- <a name="220104142501"></a>Has no official notions of schema: JSON Schemas are an afterthought and unaffiliated(?)
+- <a name="220104142502"></a>Ambiguity over the semantics of: `{"foo": "hello", "bar": null}` vs `{"foo": "hello", "bar": []}` vs `{"foo": "hello"}`; this means people choose one arbitrarily and sometimes imparts alternative semantics to each (and often do not document that)
+- <a name="220104142503"></a>JSON array are painful to process when big, which is why "JSON Lines" (https://jsonlines.org/) prospered
+- <a name="220104142504"></a>JSON aims to be part human friendly, part machine friendly; it is less human friendly than YAML or HOCON, and much less machine friendly than say alternatives like Avro, protobuf, etc; This isn't a problem in and of itself, only insofar as people use it for just about everything irrespective of who/what will consume it (human or machine)
+- <a name="220104142505"></a>Data types:
+  - <a name="220104142510"></a>It's dearly missing the Integer type (possibly my biggest pet peeve with it)
+  - <a name="220104142511"></a>It's missing a "flag" type, which could be achieved with an optional "Unit" value; people resort to using a boolean which is wasteful if only one boolean value is ever used; flags are especially useful when extremely rare.
+  - <a name="220104142512"></a>Some may argue a character type would have been useful too
+- <a name="220104142506"></a>Keys:
+  - <a name="220104142520"></a>Duplicate keys being allowed: `echo '{"foo":"hello", "foo":3}' | jq -c # returns {"foo":3}`
+  - <a name="220104142521"></a>Key-quoting is mandatory, which seems wasteful most of the time
+  - <a name="220104142522"></a>Keys are limited to strings, although this can be argued to be a good thing
+  - <a name="220104142523"></a>Keys order is not guaranteed to be preserved (TBC)
+- <a name="220104142507"></a>other misc oddness:
+  - <a name=""></a>see the likes of [this SO comment](https://stackoverflow.com/questions/1580647/json-why-are-forward-slashes-escaped#comment14144177_1580682)
+  - <a name=""></a>TODO: find more of the sort
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
