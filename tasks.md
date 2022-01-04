@@ -63,7 +63,7 @@
 	- <a name="t210115151942"></a>t210115151942 - p1 - @TypeMatching/@PartialTypeMatching - to help find where types are being pattern-matched easily
 
 	- <a name="t210110094829"></a>t210110094829 - p1 - opaque nesting: accept Obj as value, albeit the standalone version (see [t210104164037](#t210104164037)); do not limit types to [basictype]; could also help where need to provide newKeys (eg [t210202172304](#t210202172304))
-	- <a name="t210110095252"></a>t210110095252 - p5 - BLOB/CLOB (for now must use base64ed version)
+	- <a name="t210110095252"></a>t210110095252 - p5 - BLOB/CLOB for bytes/binary data (for now must use base64ed version)
 		- <a name="t210128161507"></a>t210128161507 - p5 - investigate typical unstructured data (videos, pix, ...) manipulations
 	- <a name="t210115144940"></a>t210115144940 - p5 - finalise "null" representation handling (null vs NaN vs [] vs None vs ...)
 		- <a name="t210203124717"></a>t210203124717 - NaN: tracking/support + check not in Obj (also see [t210203124840](#t210203124840), checking value types)
@@ -340,6 +340,7 @@
 				- <a name="t210202163714"></a>t210202163714 - p2 - [hack] data: address temporary hack (.get)
 				- <a name="t210131141737"></a>t210131141737 - p3 - [bug?] - .countEach('f, 'h).by('g); countCombos (see 210131141737@w)
 				- <a name="t210304115503"></a>t210304115503 - p3 - [feature] - offer a pre-sorted version (also for merging)
+				- <a name="t201208115422"></a>t201208115422 - p3 - eg x.aggregateEach('f1, 'f2).wit(_.aggregates(_.sum, _.count)).by('g)				
 
 			- grouping: <a name="t210127195236"></a>t210127195236
 				- DWH/MDX-like: <a name="t210124100722"></a>t210124100722
@@ -505,6 +506,7 @@
 			- <a name="t210120153618"></a>t210120153618 - p2 - hdfs
 			- mongo: mongodb+srv?
 			- more distributed FS: gluster (gluster://), IPFS (ipfs://), Alluxio/Tachyon (alluxio://), Swarm (decentralized)? ...
+			- <a name="t220103152854"></a>t220103152854	- DBFS support			
 		  - object storage: <a name="t210204143322"></a>t210204143322
 				- <a name="t210120153619"></a>t210120153619 - p2 - s3 support
 				- more: google cloud storage, azure, openstack swift? IBM's?
@@ -812,6 +814,8 @@
 	- <a name="t210128161346"></a>t210128161346 - p1 - pivot: dissociate top-level groupBy ("rows") from the rest of the pivoting (also see former "pivone" feature)
 	- <a name="t210202164007"></a>t210202164007 - p3 - grouping: allow groupby with redundant keys in grouper/groupee?
 	- <a name="t210426094707"></a>t210426094707 - p4 - ability to provide FK-like relations as implicit, to streamline joins (when key names differ)
+	- <a name="t220103153103"></a>t220103153103 - p5 - providing an object (eg "\*") so can do the likes of foo.retain(\*.firstKey) instead foo.retain(_.firstKey)
+	- <a name="t220104140409"></a>t220104140409 - p5 - creating own Gallia-inspired object notation (see [JSON doc](https://github.com/galliaproject/gallia-docs/blob/master/json.md))
 	
 	- dialects:
 		- <a name="t210202113713"></a>t210202113713 - p3 - consider providing "wrappers" for very at least basic queries people are familiar with such as: gallia.dialects.sql.select('foo, 'bar).from("jdbc://.../table1").where('baz == 3); mostly to help "port" code initially

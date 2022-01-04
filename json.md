@@ -2,6 +2,8 @@
 
 WIP
 
+Also see [_data modeling.md_](modeling.md)
+
 - Was probably never meant to become the standard it has become
 - Has no official notions of schema: JSON Schemas are an afterthought and unaffiliated(?)
 - Ambiguity over the semantics of: `{"foo": "hello", "bar": null}` vs `{"foo": "hello", "bar": []}` vs `{"foo": "hello"}`; this means people choose one arbitrarily and sometimes imparts alternative semantics to each (and often do not document that)
