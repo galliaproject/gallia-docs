@@ -35,7 +35,7 @@ object CbioportalCancerStudies {
     url
       .streamContainer("cancer_study") // could also pass schema
       .remove("CANCER_STUDY_ID") // not used
-      .transform(_.dateTime("IMPORT_DATE"))
+      .transform(_.localDateTime("IMPORT_DATE"))
         .using(_.format(DateTimeFormatter.ISO_DATE_TIME).replace("T", " "))
       .rename(
           "CANCER_STUDY_IDENTIFIER" ~> "STUDY_ID",
@@ -44,12 +44,12 @@ object CbioportalCancerStudies {
       .rename(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, _))
       .bringAll(
         (  url
-              .streamContainer("sample_list").asViewBased
+              .streamContainer("sample_list").toViewBased
               .filterBy(_.string("STABLE_ID"))
                 .matches(_.endsWith("_all"))
               .retain("STABLE_ID", "LIST_ID"),
             url
-              .streamContainer("sample_list_list").asViewBased
+              .streamContainer("sample_list_list").toViewBased
               .count("SAMPLE_ID" ~> "allSampleCount").by("LIST_ID"))
           .innerJoinOnCommonKey
           .remove("LIST_ID")
