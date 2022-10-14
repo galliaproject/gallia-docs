@@ -36,6 +36,7 @@
 	- <a name="t210127173933"></a>t210127173933 - p2 - @Max3/@Max5 - add missing code (rationale for 3 or 5: if you need more than N, either you can use an intermediate state or you may just be doing something wrong)
 	- <a name="t210122161652"></a>t210122161652 - p1 - investigate grab/squash (orphan/combine) vs VO
 	- <a name="t210308145846"></a>t210308145846 - p2 - CallSite: look into https://github.com/com-lihaoyi/sourcecode
+		- <a name="t220929161636"></a>t220929161636 - generalize (manual) call site mechanism		
 	- heads:
 		- <a name="t201007093053"></a>t201007093053 - p4 - provide HeadPairO - forKeyPair, for group(_.firstKey).by(_.lastKey)
 		- <a name="t201021120753"></a>t201021120753 - p4 - provide HeadOptionO, eg as result of u.filter/u.find (see [t201023083923](#t201023083923))	
@@ -58,6 +59,10 @@
 		- <a name="t201027130649"></a>t201027130649 - p4 - abstract runner strategy ("naive" strategy at the moment)
 	 	- <a name="t210114125607"></a>t210114125607 - p5 - improve "InputData" afterthoughts (meant to help with debugging)
 
+	- HeadV:
+		- <a name="t220916113454"></a>t220916113454 - Separate HeadV[T] from HeadV[Seq[U]]; also consider a separate HeadV[N for Numeric]
+		- <a name="t220916114113"></a>t220916114113 - HeadSquashing: version that keeps original Streamer (especially for RddStreamer if big)
+
 ===========================================================================
 - types: <a name="types"></a><a name="t210121124808"></a>t210121124808
 	- <a name="t210115151942"></a>t210115151942 - p1 - @TypeMatching/@PartialTypeMatching - to help find where types are being pattern-matched easily
@@ -67,7 +72,7 @@
 		- <a name="t210128161507"></a>t210128161507 - p5 - investigate typical unstructured data (videos, pix, ...) manipulations
 	- <a name="t210115144940"></a>t210115144940 - p5 - finalise "null" representation handling (null vs NaN vs [] vs None vs ...)
 		- <a name="t210203124717"></a>t210203124717 - NaN: tracking/support + check not in Obj (also see [t210203124840](#t210203124840), checking value types)
-	- <a name="t210124153304"></a>t210124153304 - p2 - add all the java.lang primitives, and the .sql ones; automatically convert to scala counterpart though?
+	~- <a name="t210124153304"></a>t210124153304 - p2 - add all the java.lang primitives, and the .sql ones; automatically convert to scala counterpart though?~
 	- <a name="t210108114447"></a>t210108114447 - p5 - support own "flag" type? or just Option[Unit]?
 	
 	---------------------------------------------------------------------------
@@ -92,7 +97,7 @@
 			- a boolean can either be seen as 0/1 integers, or as a special kind of enum			
 		- <a name="t210201095414"></a>t210201095414 - p2 - missing enum accessor support, eg _.enum\[MyEnum\]('f)
 		- <a name="t210114093525"></a>t210114093525 - p4 - capture enum values (will need to adapt serialization)
-		- <a name="t210110095228"></a>t210110095228 - p5 - also support scala enum (as opposed to enumeratum)
+		~- <a name="t210110095228"></a>t210110095228 - p5 - also support scala enum (as opposed to enumeratum)~
 		- <a name="t210116114654"></a>t210116114654 - p5 - double check ModifyObj behavior OK
 		
 	---------------------------------------------------------------------------		
@@ -102,11 +107,15 @@
 			- keep to a minimum...
 		- <a name="t210111135617"></a>t210111135617 - p5 - add more common Seq/String/number operations for Whatever?			
 		- <a name="t210202160537"></a>t210202160537 - p2 - missing combinations of number types for plus/times
-		- <a name="t210202160709"></a>t210202160709 - p3 - more formatting value types
+		~- <a name="t210202160709"></a>t210202160709 - p3 - more formatting value types~
 		- <a name="t210204170956"></a>t210204170956 - create workaround for: def + (that: Int): TypedWhatever\[Int\] (can be Double); relates to [t201017102332](#t201017102332) (@NumberAbstraction)
 		- <a name="t210113124437"></a>t210113124437 - need to adapt mechanism to obtain 0 when missing; also "size" ambiguity (container vs length of seq/string)
 		- <a name="t210204170740"></a>t210204170740 - occurrences of "whatever0": need to determine if/when must use ContainedWhatever or if isWhatever okay
 		- <a name="t210201164613"></a>t210201164613 - p2 - [bug] - fix .transform(_.typed\[Seq\[_\]\]('f)).using(_.size), or provide .anys (if only need eg .size, or .slice(1, 3))
+
+	---------------------------------------------------------------------------
+	- built-in entities: <a name="t220929104724"></a>t220929104724
+		- <a name="t220929104730"></a>t220929104730 - provide some built-in entities for common ones, e.g. Email, Url, Uri, ...
 
 ===========================================================================
 - stats: <a name="stats"></a><a name="t210128151632"></a>t210128151632
@@ -149,7 +158,8 @@
 
 ===========================================================================
 - target selection: <a name="target-selection"></a><a name="t210205113906"></a>t210205113906
-	- <a name="t210107203932"></a>t210107203932 - p5 - cleanup the big mess
+	- <a name="t220926105107"></a>t220926105107 - rejigged selectors (selectors v2) - c220926105107@ww
+		- <a name="t210107203932"></a>t210107203932 - p5 - cleanup the big mess
 	- untyped:
 		:
 	- typed:
@@ -161,6 +171,7 @@
 	- <a name="t210107203932"></a>t210107203932 - p3 - cleanup and fine-tune selections (typed and untyped)
 	- <a name="t210110094731"></a>t210110094731 - p5 - offer more target "selection" when feasible (eg .convert(_.firstKey).toInt) (otherwise must rely more on forX mechanisms, which is more coarse)
 	- <a name="t210110094730"></a>t210110094730 - p5 - offer more for-each field operation shorthands (eg .convert('f, 'g, 'h).toInt) when practical; (otherwise must rely more on forX mechanisms, which is more coarse)
+	- <a name="t220921125205"></a>t220921125205 - phase out support for EKey
 
 ===========================================================================
 - validation: [vldt] <a name="validation"></a><a name="vldt"></a><a name="t210205113909"></a>t210205113909
@@ -189,8 +200,8 @@
 		- <a name="t210201103739"></a>t210201103739 - p2 - validate T for .typed
 		- <a name="t210201164749"></a>t210201164749 - p2 - if ignoring container (eg .stringx('f)), validate not changing container type		
 		- <a name="t210201164749"></a>t210201164749 - p1 - transform Whatever to Whatever -> ensure not changing type (and container?)
-		- transform x to v:
-			- <a name="t210202155202"></a>t210202155202 - p1 - verify result type (e.g if returns Char instead of String accidentally)
+		~- transform x to v:~
+			~- <a name="t210202155202"></a>t210202155202 - p1 - verify result type (e.g if returns Char instead of String accidentally)~
 		- transform u to x: 
 			- <a name="t210202155458"></a>t210202155458 - p1 - verify input is indeed u
 		- transform z to x:
@@ -301,9 +312,9 @@
 			- <a name="t210111113343"></a>t210111113343 - p5 - [feature] - add support for zip (non-strings) for consistency: bobj('f -> Seq("a", "b", "c"), 'g -> Seq("1", "2", "3").zip('f, 'g).underNewKey('p)
 			- <a name="t210110101000"></a>t210110101000 - p2 - [feature] - offer a [guaranteed] zip (if expect no missing fields)			
 			
-		- untuplify:
+		- deserialize: (formerly untuplify):
 			- new keys:
-				- <a name="t210117192142"></a>t210117192142 - p5 - [feature] - add enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see [t210117192141](#t210117192141) for pivoting)
+				- ~<a name="t210117192142"></a>t210117192142 - p5 - [feature] - add enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see [t210117192141](#t210117192141) for pivoting)~
 			
 		- nesting-related:
 			- <a name="t210109144926"></a>t210109144926 - p5 - [feature] - generalize nest/unnest as "move"
@@ -311,6 +322,9 @@
 			- <a name="t210109175621"></a>t210109175621 - p5 - [feature] - reproduce the optional "as" mechanism: for renest (see [t210116192032](#t210116192032) for generalization)
 			- <a name="t210122162650"></a>t210122162650 - p2 - [bug] - meta nest into: handle optional the way nest-under does
 			- renest: if all can be opt (see ?); relate to [guaranteed]?
+
+		- custom:
+			- <a name="t220921164021"></a>t220921164021 - give access to parent objects at least for custom?
 
 	===========================================================================
 	- z: HeadS: <a name="t210205113938"></a>t210205113938
@@ -337,7 +351,6 @@
 		- aggregating: <a name="t210127195238"></a>t210127195238			
 				- <a name="t210202163542"></a>t210202163542 - p2 - address if no aggregation (in meta)
 				- <a name="t210127195214"></a>t210127195214 - p2 - [fluency] - forbid agg(_.foos('f)) -> notice the 's'; already the case in fluent interface?				
-				- <a name="t210202163714"></a>t210202163714 - p2 - [hack] data: address temporary hack (.get)
 				- <a name="t210131141737"></a>t210131141737 - p3 - [bug?] - .countEach('f, 'h).by('g); countCombos (see 210131141737@w)
 				- <a name="t210304115503"></a>t210304115503 - p3 - [feature] - offer a pre-sorted version (also for merging)
 				- <a name="t201208115422"></a>t201208115422 - p3 - eg x.aggregateEach('f1, 'f2).wit(_.aggregates(_.sum, _.count)).by('g)				
@@ -359,7 +372,8 @@
 			- <a name="t210131102306"></a>t210131102306 - cascade if multiple?
 			- <a name="t210131102354"></a>t210131102354 - flattenAndUnnestBy{Group,Left,...} - common enough?
 
-		- merging:
+		- merging: - join:
+			- <a name="t220209085836"></a>t220209085836 - name conflict in join: offer mode to discard RHS conflicts, and mode to rename RHS		
 			- <a name="t210128130124"></a>t210128130124 - p2 - [fluency] - allow explicit use of in-memory join if one side is small enough ("hash" join) 
 			- <a name="t210117143536"></a>t210117143536 - p5 - also handle union within merging conf?
 			- <a name="t210124100649"></a>t210124100649 - p4 - [feature] - add multi-joins
@@ -374,7 +388,7 @@
 							
 		- pivoting: <a name="pivoting"></a><a name="pivot"></a><a name="t210304120525"></a>t210304120525
 			- new keys:
-				- <a name="t210117192142"></a>t210117192142 - p4 - enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see [t210117192142](#t210117192142) for untuplify)
+				- <a name="t210117192142"></a>t210117192142 - p4 - enum counterpart to provide newKeys, eg def asNewKeys\[MyEnum\] (also see [t210117192142](#t210117192142) for deserialize/untuplify)
 				- <a name="t210202172304"></a>t210202172304 - p3 - unspecified: using opaque object as data (relates to [t210110094829](#t210110094829)) - try
 			- <a name="t210120171258"></a>t210120171258 - p2 - [feature] - add support for unpivoting
 			- <a name="t210117192221"></a>t210117192221 - p3 - configurable key separator	
@@ -426,14 +440,31 @@
 					may be convenient especially if run in meta-only mode (<a name="t210106101457"></a>t210106101457), to provide both incoming/outgoing cc for a complicated transformation							
 			- <a name="t201103114910"></a>t201103114910 - config files: java properties file (eg config.properties: foo=bar\nbaz=3\n...), *nix config files (cat foo.conf -> #comment\nkey=value\n ...); will need charset support too
 			- <a name="t210128160407"></a>t210128160407 - p3 - handle XML (see PoC code)
-			- <a name="t210128163914"></a>t210128163914 - avro/thrift/protobuf
-			- <a name="t210128163915"></a>t210128163915 - parquet/ORC/RCFile/CarbonData (also look into feather?)
 			- <a name="t210128160323"></a>t210128160323 - p3 - excel (via apache POI), eg "/path/to/file.xlsx", use sole sheet or provide sheet name as "container"; see POC code
 			- <a name="t201028110431"></a>t201028110431 - pdf...? try and at least extract tables? probably tricky... https://stackoverflow.com/questions/3424588/programmatically-extract-pdf-tables
+			- <a name="t210128163914"></a>t210128163914 - thrift/protobuf - see t220929105215 for avro
+			- <a name="t210128163915"></a>t210128163915 - ORC/RCFile/CarbonData (also look into feather?) - see t220929105252 for parquet
+
+			---------------------------------------------------------------------------
+			- avro and parquet: <a name="t220929105350"></a>t220929105350
+				- <a name="t220302091219"></a>t220302091219 - move schema ingest in a proper validation test (both avro and parquet)
 			
+				---------------------------------------------------------------------------
+				- avro: <a name="t220929105215"></a>t220929105215
+					- <a name="t220224094305"></a>t220224094305 - security concerns, maybe use reflection to access setDoc instead? (temporary `content.writeFileContent`)
+					- <a name="t220224102703"></a>t220224102703 - is it possible with avro-compiler? try manually otherwise? (`writeSchemaIdlString(schema: AvroSchema): String`)
+					- <a name="t220228161302"></a>t220228161302 - [optim] - gallia to avro data - cache nested schema based on path		
+
+				---------------------------------------------------------------------------
+				- parquet: <a name="t220929105252"></a>t220929105252
+					- <a name="t220222112205"></a>t220222112205 - offer manual read, aot .avroRecords(new HadoopPath(path))?
+					- <a name="t220222112206"></a>t220222112206 - offer manual write?
+
+			---------------------------------------------------------------------------			
 			- more:
 				- <a name="t210204142554"></a>t210204142554 - HDF/HDF5
 				- <a name="t210204142555"></a>t210204142555 - SequenceFile								
+				- <a name="t220929104852"></a>t220929104852 - investigate the likes of FlatBuffers, Cap'n Proto, SBE (Simple Binary Encoding: High Performance Message Codec)
 
 		---------------------------------------------------------------------------	  							
 		- databases: <a name="t210205113943"></a>t210205113943
@@ -463,13 +494,13 @@
 		---------------------------------------------------------------------------					
 		- in memory: <a name="t210205113946"></a>t210205113946
 			- <a name="t210128163912"></a>t210128163912 - Spark Row
-			- <a name="t210117105638"></a>t210117105638 - [dataclass] - (see code 210117105638@w); also see [t210128163910](#t210128163910) for source code
-				- in:```
-					(x:     MyCc ).read  ()
-					(x: Seq[MyCc]).stream()```
-				- out: readCC/populateDC/writeCC + z; ```
-					val x: MyCC           = u.populate[MyCc]
-					val x: Iterator[MyCC] = z.populate[MyCc] // or as Streamer```
+			- <a name="t210117105638"></a>t210117105638 - reading/streaming input from CCs via macro and/or reflection - [dataclass] - (see code 210117105638@w); also see [t210128163910](#t210128163910) for source code
+					- in:```
+						(x:     MyCc ).read  ()
+						(x: Seq[MyCc]).stream()```
+					- out: readCC/populateDC/writeCC + z; ```
+						val x: MyCC           = u.populate[MyCc]
+						val x: Iterator[MyCC] = z.populate[MyCc] // or as Streamer```
 
 		---------------------------------------------------------------------------
 		- schema-only: see [t210204142528](#t210204142528)
@@ -519,6 +550,7 @@
 	===========================================================================
 	- in: <a name="in"></a><a name="t210205114007"></a>t210205114007
 		- validation: vldt: see [t210115153348](#t210115153348)
+		- <a name="t220207144513"></a>t220207144513 - separate validation: `final def schema[T: WTT]                 : Fluency = cls[T]             .pipe(explicitSchema) ...`
 
 		- misc: <a name="t210205114028"></a>t210205114028
 			- <a name="t210114201159"></a>t210114201159 - p5 - implement missing convenience creation methods (eg "hello world".content, ...)
@@ -559,12 +591,14 @@
 	===========================================================================
 	- out: <a name="out"></a><a name="t210205114012"></a>t210205114012
 		- misc:
+			- <a name="t220930115427"></a>t220930115427 - offer Future-powered mechanism to postpone run until all leaves are requested
 			- <a name="t210122140324"></a>t210122140324 - p1! - [bug] - ensure sole or last leaf before running
 				- closely related to <a name="t210121160956"></a>t210121160956-checkpointing (and <a name="t201108093951"></a>t201108093951-returning Unit or head)
 				- delaying run causes issues for formatString that uses a StringWriter
 				- 210205063004: would make the potentially problematic assumption that a fork isn't requested *after* one of the leaf has been acted upon
 			- <a name="t210202165243"></a>t210202165243 - p4 - [feature] - allow append as well		
 			- <a name="t210204193417"></a>t210204193417 - p3 - [feature] - for practicality, provide informal describe()/describeMeta()/describeData() (if no nesting then as formatted table, and so on)
+			- <a name="t220930115036"></a>t220930115036 - add feature to dump intermediate meta/data like in towardsdatascience article (https://towardsdatascience.com/gallia-a-library-for-data-transformation-3fafaaa2d8b9)
 		- json:
 			- <a name="t201230133034"></a>t201230133034 - p5 - redo the "more readable" json version (see 210204164133@w), and/or do a BTON equivalent
 
@@ -606,7 +640,9 @@
 			- early pruning - see [first pass](https://github.com/galliaproject/gallia-core/blob/v0.2.0/src/main/scala/gallia/plans/AtomNodes.scala#L13)
 			- code generation
 			- ...
-		- optimize traversal if dag is chain, especially if nested - see [first pass](https://github.com/galliaproject/gallia-core/blob/v0.2.0/src/main/scala/gallia/plans/AtomPlan.scala#L32)
+		~- optimize traversal if dag is chain, especially if nested - see [first pass](https://github.com/galliaproject/gallia-core/blob/v0.2.0/src/main/scala/gallia/plans/AtomPlan.scala#L32)~
+		- <a name="t210304102720"></a>t210304102720 - persist atom plan (skipping all planning)
+			- <a name="t221003112952"></a>t221003112952 - generate corresponding code for it for		
 		- plan caching?
 	- spark: <a name="t210204112444"></a>t210204112444
 		- <a name="t210121164920"></a>t210121164920 - p5 - delegate to spark SQL when feasible? might be tricky unless trivial; is Tungsten only used with spark SQL?
@@ -637,6 +673,7 @@
 	- <a name="t210304134826"></a>t210304134826 - p3 - confirm mac ok as-is
 	- <a name="t210304095755"></a>t210304095755 - p3 - simplying locale setting
 	- <a name="t210308150015"></a>t210308150015 - p2 - look into https://github.com/com-lihaoyi/os-lib instead of ProcessBuilder
+	- <a name="t220624170410"></a>t220624170410 - ser/des is quite wasteful as it is, we would need a space efficient serialization that remains textual in nature (at least so gnusort can process it)
 
 ===========================================================================
 - spark: <a name="spark"></a><a name="t210121164812"></a>t210121164812
@@ -701,6 +738,7 @@
 		- <a name="t201101121424"></a>t201101121424 - confusing: `preservesPartitioning` indicates whether the input function preserves the partitioner, which should be `false` unless this is a pair RDD and the input function doesn't modify the keys.
 		- <a name="t210322165646"></a>t210322165646 - "hadoop-client-api" bug (only with 2.13?)
 		- <a name="t210325115753"></a>t210325115753 - testrun.sh: try an https://github.com/com-lihaoyi/Ammonite version
+		- <a name="t220721105407"></a>t220721105407 - avro/parquet: custom HadoopRdd (cleaner) or convert from spark sql; `sc.newAPIHadoopRDD[AvroWrapper[GenericRecord], NullWritable, AvroInputFormat[GenericRecord]](sc.hadoopConfiguration, classOf[AvroInputFormat[GenericRecord]], classOf[AvroWrapper    [GenericRecord]], classOf[NullWritable])`
 
 ===========================================================================
 - build: <a name="build"></a><a name="t210121165130"></a>t210121165130
@@ -767,7 +805,7 @@
 		- it can also be seen as a starting point, for someone to see what is used under the hood and expand from it if needed; eg: val content: String = "/my/file.txt".readFileContent()
 	- <a name="t210116165619"></a>t210116165619 - p5* - port the rest of aptus (much larger)
 	- ~~<a name="t210116165620"></a>t210116165620 - p5 - externalize aptus in its own stand alone utility library~~ --> see https://github.com/aptusproject/aptus-core
-	- <a name="t210116165559"></a>t210116165559 - p5 - rename ".as" to ".in"? [research]
+	~- <a name="t210116165559"></a>t210116165559 - p5 - rename ".as" to ".in"? [research]~
 	- <a name="t210123101634"></a>t210123101634 - p2 - [bug] - significantFigures vs maxDecimal
 	- <a name="t210204095900"></a>t210204095900 - p4 - regexes could use a much more thorough treatment
 	- <a name="t210125110827"></a>t210125110827 - aliases: consider AnyVal-based wrappers rather than mere aliases? overkill?
@@ -833,7 +871,7 @@
 	- terminology: <a name="t210124100008"></a>t210124100008
 		- <a name="t210124100008"></a>t210124100008 - p2 - change read()/stream() to readOne()/read()?
 		- <a name="t210127124029"></a>t210127124029 - p4 - create OWL ontology?
-		- <a name="t210124100009"></a>t210124100009 - better names for: {A,B}Obj, CanForceAs{1,2}, potch, untuplify{1,2}{z,a,b}, asArray{1,2}, Whatever, "pairs", NonTable, Ttq{K,R}Path{z,}, reverseCartesianProduct
+		- <a name="t210124100009"></a>t210124100009 - better names for: {A,B}Obj, CanForceAs{1,2}, potch, deserialize{1,2}{z,a,b}, asArray{1,2}, Whatever, "pairs", NonTable, Ttq{K,R}Path{z,}, reverseCartesianProduct
 		- <a name="t210202100936"></a>t210202100936 - p3 - field creators .date and .dateTime conflict with aptus' ... as date1/dateTime1?			
 		- <a name="t210202101142"></a>t210202101142 - p2 - keep "accessor" term (eg HeadZAccessors)?
 		- target selection:
@@ -844,6 +882,16 @@
 ===========================================================================
 - more: <a name="more"></a><a name="t210124100537"></a>t210124100537
 
+	- warnings:
+		- <a name="t220916134808"></a>t220916134808 - add optional warning reports (must be turned on and runs on meta only)
+
+	---------------------------------------------------------------------------
+	- java:
+		- <a name="t220929104306"></a>t220929104306 - blocker: scala bug (see https://users.scala-lang.org/t/issue-with-calling-scala-code-from-java and https://github.com/scala/bug/issues/12556)
+		- more:
+			- <a name="t220929104244"></a>t220929104244 - add support for java enums
+
+	---------------------------------------------------------------------------
 	- DSL: <a name="dsl"></a><a name="t210313130217"></a>t210313130217 - expand on the idea of [language-agnostic DSL](https://github.com/galliaproject/gallia-core/blob/init/README.md#what-about-other-programming-languages)
 		- <a name="kotlin"></a><a name="t210313130234"></a>t210313130234 - create kotlin PoC, at least for client code interface (internals can reuse scala)
 		- <a name="python"></a><a name="t210313130235"></a>t210313130235 - create python PoC, at least for client code interface (any reasonnable way to reuse scala's internals?)
@@ -895,6 +943,20 @@
 	---------------------------------------------------------------------------
 	- slicing & dicing: <a name="t210124100531"></a>t210124100531 - (relates to [rereading]/[checkpoint] (see [t210121160956](#t210121160956))/[snapshot]/[persist]/[cache]/[demux]/[splice]/[partition])
 		- see PoC
+		
+	---------------------------------------------------------------------------
+	- misc:
+		- <a name="t220929110057"></a>t220929110057 - try dogfooding gallia processing via metaschema (see `gallia.metaschema`)
+
+===========================================================================
+- next release: <a name="next"></a><a name="t220412134341"></a>t220412134341
+  - dag:
+    - <a name="t220412134610"></a>t220412134610 - dag forks: allow gathering all outputs "at once"
+  - union types:
+    - <a name="t220412134706"></a>t220412134706 - 
+  - formats:
+    - Spark SQL's StructType support
+    - basic jsonschema support (eg as presented in https://json-schema.org/learn/miscellaneous-examples.html)
 
 ===========================================================================
 <br/>
