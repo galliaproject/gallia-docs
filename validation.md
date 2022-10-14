@@ -2,8 +2,8 @@
 
 WIP
 
-See `galliatest.suites.single.AssertTest` in gallia-testing
-See `gallia.RuntimeValidation` in gallia-core
+- See [AssertTest.scala](https://github.com/galliaproject/gallia-testing/blob/v0.4.0/src/main/scala/galliatest/suites/single/AssertTest.scala)
+- See [RuntimeValidation.scala](https://github.com/galliaproject/gallia-core/blob/v0.4.0/src/main/scala/gallia/RuntimeValidation.scala)
 
 <br/>
 <br/>
