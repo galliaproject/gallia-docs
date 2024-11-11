@@ -7,7 +7,7 @@ Also see [_Gallia data modeling.md_](modeling.md)
 - <a name="220104142500"></a>Was probably never meant to become the standard it has become
 - <a name="220104142501"></a>Has no official notions of schema: JSON Schemas are an afterthought and unaffiliated(?)
 - <a name="220104142502"></a>Ambiguity over the semantics of: `{"foo": "hello", "bar": null}` vs `{"foo": "hello", "bar": []}` vs `{"foo": "hello"}`; this means people choose one arbitrarily and sometimes imparts alternative semantics to each (and often do not comment on that fact); empty strings and zero values are also possibly problematic from that angle (TBD).
-- <a name="220104142503"></a>JSON arrays at the top-level are painful to process when big, which is why "JSON Lines" (https://jsonlines.org/) prospered
+- <a name="220104142503"></a>JSON arrays at the top-level are painful to process when big, which is probably why "JSON Lines" (https://jsonlines.org/) prospered. I recommend avoiding them as much as possible.
 - <a name="220104142504"></a>JSON aims to be part human friendly, part machine friendly; it is less human friendly than YAML or HOCON, and much less machine friendly than say alternatives like Avro, protobuf, etc; This isn't a problem in and of itself, only insofar as people use it for just about everything irrespective of who/what will consume it (human or machine)
 - <a name="220104142505"></a>Data types:
   - <a name="220104142510"></a>It's dearly missing the Integer type (possibly my biggest pet peeve with it) - I refer to this as the "JSON number tax"
@@ -18,6 +18,7 @@ Also see [_Gallia data modeling.md_](modeling.md)
   - <a name="220104142521"></a>Key-quoting is mandatory, which seems wasteful most of the time
   - <a name="220104142522"></a>Keys are limited to strings, although this can be argued to be a good thing
   - <a name="220104142523"></a>Keys order is not guaranteed to be preserved
+- <a name="241111153028"></a>File extensions: Other than `.json`, and to an extent `.jsonl`, there is no common convention for what a file may actually contain: a single object? multiple objects one-per-line? multiple objects in a JSON 'array'. It would certainly be useful to know that just from the filename. In my libraries (`Gallia` and `Aptus`), I assume: `.json` or `.jsono` for single object, `.jsonl` or `.jsons` for one-per-line, and `.jsona` for array
 - <a name="220104142507"></a>other misc oddness:
   - <a name=""></a>see the likes of [this SO comment](https://stackoverflow.com/questions/1580647/json-why-are-forward-slashes-escaped#comment14144177_1580682)
   - <a name=""></a>TODO: find more of the sort
