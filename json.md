@@ -18,7 +18,8 @@ Also see [_Gallia data modeling.md_](modeling.md)
   - <a name="220104142521"></a>Key-quoting is mandatory, which seems wasteful most of the time
   - <a name="220104142522"></a>Keys are limited to strings, although this can be argued to be a good thing
   - <a name="220104142523"></a>Keys order is not guaranteed to be preserved
-- <a name="241111153028"></a>File extensions: Other than `.json`, and to an extent `.jsonl`, there is no common convention for what a file may actually contain: a single object? multiple objects one-per-line? multiple objects in a JSON 'array'. It would certainly be useful to know that just from the filename. In my libraries (`Gallia` and `Aptus`), I assume: `.json` or `.jsono` for single object, `.jsonl` or `.jsons` for one-per-line, and `.jsona` for array
+- <a name="241111153028"></a>File extensions:
+  - Other than `.json`, and to an extent `.jsonl`, there is no common convention for what a file may actually contain: a single object? in compact form? pretty-printed? Multiple objects one-per-line? multiple objects in a JSON 'array', multiple objects pretty printed? It would certainly be useful to know that just from the filename. In my libraries (`Gallia` and `Aptus`), I assume: `.json` or `.jsono` for single object, `.jsonl` or `.jsons` for one-per-line, and `.jsona` for array
 - <a name="220104142507"></a>other misc oddness:
   - <a name=""></a>see the likes of [this SO comment](https://stackoverflow.com/questions/1580647/json-why-are-forward-slashes-escaped#comment14144177_1580682)
   - <a name=""></a>TODO: find more of the sort
